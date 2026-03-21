@@ -238,18 +238,18 @@
 <!-- ====== LOGIN ====== -->
 <div id="loginScreen">
   <div class="login-box">
-    <div class="login-logo">ð¦</div>
+    <div class="login-logo">📦</div>
     <h1>Inventario Diario</h1>
-    <p>Sistema de gestiÃ³n de inventario</p>
+    <p>Sistema de gestión de inventario</p>
     <input type="text" id="loginUser" placeholder="Usuario" onkeydown="if(event.key==='Enter')doLogin()">
-    <input type="password" id="loginPass" placeholder="ContraseÃ±a" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="btn-login" onclick="doLogin()">ð Ingresar</button>
-    <p class="login-error" id="loginError">â Usuario o contraseÃ±a incorrectos</p>
+    <input type="password" id="loginPass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn-login" onclick="doLogin()">🔐 Ingresar</button>
+    <p class="login-error" id="loginError">❌ Usuario o contraseña incorrectos</p>
     <div class="login-users">
-      <p>Acceso rÃ¡pido (demo)</p>
+      <p>Acceso rápido (demo)</p>
       <div class="user-chips">
-        <span class="chip" onclick="quickLogin('admin','admin123')">ð¤ Admin</span>
-        <span class="chip" onclick="quickLogin('caja','caja123')">ð§¾ Caja</span>
+        <span class="chip" onclick="quickLogin('admin','admin123')">👤 Admin</span>
+        <span class="chip" onclick="quickLogin('caja','caja123')">🧾 Caja</span>
       </div>
     </div>
   </div>
@@ -259,13 +259,13 @@
 <div id="app">
   <div class="topbar">
     <div class="topbar-left">
-      <span class="topbar-logo">ð¦</span>
+      <span class="topbar-logo">📦</span>
       <h2>Inventario Diario</h2>
     </div>
     <div class="topbar-right">
       <div class="user-badge">
-        <span id="topbarUser">â</span>
-        <span class="role-tag" id="topbarRole">â</span>
+        <span id="topbarUser">—</span>
+        <span class="role-tag" id="topbarRole">—</span>
       </div>
       <button class="btn-logout" onclick="doLogout()">Salir</button>
     </div>
@@ -274,10 +274,10 @@
   <div class="main-content">
     <!-- TABS -->
     <div class="tabs">
-      <button class="tab-btn active" onclick="showTab('ingresar')" id="tab-ingresar">ð Ingresar</button>
-      <button class="tab-btn" onclick="showTab('registros')" id="tab-registros">ð Registros</button>
-      <button class="tab-btn" onclick="showTab('pdf')" id="tab-pdf">ð Exportar PDF</button>
-      <button class="tab-btn hidden" onclick="showTab('admin')" id="tab-admin">âï¸ Admin</button>
+      <button class="tab-btn active" onclick="showTab('ingresar')" id="tab-ingresar">📝 Ingresar</button>
+      <button class="tab-btn" onclick="showTab('registros')" id="tab-registros">📋 Registros</button>
+      <button class="tab-btn" onclick="showTab('pdf')" id="tab-pdf">📄 Exportar PDF</button>
+      <button class="tab-btn hidden" onclick="showTab('admin')" id="tab-admin">⚙️ Admin</button>
     </div>
 
     <!-- ===== TAB: INGRESAR ===== -->
@@ -297,14 +297,14 @@
           <div class="stat-value orange" id="statTotal">0</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">CategorÃ­as activas</div>
+          <div class="stat-label">Categorías activas</div>
           <div class="stat-value" id="statCategorias">0</div>
         </div>
       </div>
 
       <!-- Formulario -->
       <div class="card">
-        <div class="card-title"><span>â</span> Nuevo Registro de Inventario</div>
+        <div class="card-title"><span>➕</span> Nuevo Registro de Inventario</div>
         <div class="form-grid">
           <div class="form-group">
             <label>Fecha</label>
@@ -313,13 +313,13 @@
           <div class="form-group">
             <label>Tipo de Movimiento</label>
             <select id="fTipo">
-              <option value="Entrada">ð¥ Entrada</option>
-              <option value="Salida">ð¤ Salida</option>
-              <option value="Ajuste">âï¸ Ajuste</option>
+              <option value="Entrada">📥 Entrada</option>
+              <option value="Salida">📤 Salida</option>
+              <option value="Ajuste">⚖️ Ajuste</option>
             </select>
           </div>
           <div class="form-group">
-            <label>CategorÃ­a / Ãrea</label>
+            <label>Categoría / Área</label>
             <input type="text" id="fCategoria" placeholder="Ej: Pollos, Insumos, Empaques" list="catList">
             <datalist id="catList"></datalist>
           </div>
@@ -359,21 +359,21 @@
           <textarea id="fObservaciones" rows="2" placeholder="Notas adicionales..." style="resize:vertical"></textarea>
         </div>
         <div class="form-actions">
-          <button class="btn btn-primary" onclick="guardarRegistro()">ð¾ Guardar Registro</button>
-          <button class="btn btn-outline" onclick="limpiarFormulario()">ð Limpiar</button>
+          <button class="btn btn-primary" onclick="guardarRegistro()">💾 Guardar Registro</button>
+          <button class="btn btn-outline" onclick="limpiarFormulario()">🔄 Limpiar</button>
         </div>
       </div>
 
-      <!-- Ãltimos registros del dÃ­a -->
+      <!-- Últimos registros del día -->
       <div class="card">
-        <div class="card-title"><span>ð</span> Ãltimos registros de hoy</div>
+        <div class="card-title"><span>🕐</span> Últimos registros de hoy</div>
         <div class="table-wrap">
           <table id="tablaDia">
             <thead>
               <tr>
                 <th>Hora</th>
                 <th>Tipo</th>
-                <th>CategorÃ­a</th>
+                <th>Categoría</th>
                 <th>Producto</th>
                 <th>Cantidad</th>
                 <th>Precio Unit.</th>
@@ -385,8 +385,8 @@
           </table>
         </div>
         <div class="empty-state hidden" id="emptyDia">
-          <div class="icon">ð</div>
-          <p>No hay registros para hoy aÃºn</p>
+          <div class="icon">📋</div>
+          <p>No hay registros para hoy aún</p>
         </div>
       </div>
     </div>
@@ -394,7 +394,7 @@
     <!-- ===== TAB: REGISTROS ===== -->
     <div id="pane-registros" class="hidden">
       <div class="card">
-        <div class="card-title"><span>ð</span> Buscar y Filtrar Registros</div>
+        <div class="card-title"><span>🔍</span> Buscar y Filtrar Registros</div>
         <div class="filter-bar">
           <div class="form-group">
             <label>Desde</label>
@@ -405,7 +405,7 @@
             <input type="date" id="filtroHasta">
           </div>
           <div class="form-group">
-            <label>CategorÃ­a</label>
+            <label>Categoría</label>
             <select id="filtroCategoria"><option value="">Todas</option></select>
           </div>
           <div class="form-group">
@@ -421,14 +421,14 @@
             <label>Buscar</label>
             <input type="text" id="filtroBuscar" placeholder="Producto, responsable...">
           </div>
-          <button class="btn btn-primary" onclick="aplicarFiltros()" style="margin-bottom:0">ð Buscar</button>
-          <button class="btn btn-outline" onclick="limpiarFiltros()" style="margin-bottom:0">â Limpiar</button>
+          <button class="btn btn-primary" onclick="aplicarFiltros()" style="margin-bottom:0">🔍 Buscar</button>
+          <button class="btn btn-outline" onclick="limpiarFiltros()" style="margin-bottom:0">✕ Limpiar</button>
         </div>
       </div>
 
       <div class="card">
         <div class="card-title" style="justify-content:space-between">
-          <span style="display:flex;align-items:center;gap:8px"><span>ð</span> Registros</span>
+          <span style="display:flex;align-items:center;gap:8px"><span>📋</span> Registros</span>
           <span id="countRegistros" style="font-size:0.85rem;color:var(--text-muted)"></span>
         </div>
         <div class="table-wrap">
@@ -438,7 +438,7 @@
                 <th>Fecha</th>
                 <th>Hora</th>
                 <th>Tipo</th>
-                <th>CategorÃ­a</th>
+                <th>Categoría</th>
                 <th>Producto</th>
                 <th>Cantidad</th>
                 <th>Unidad</th>
@@ -452,7 +452,7 @@
           </table>
         </div>
         <div class="empty-state hidden" id="emptyRegistros">
-          <div class="icon">ð</div>
+          <div class="icon">🔍</div>
           <p>No se encontraron registros</p>
         </div>
       </div>
@@ -461,19 +461,19 @@
     <!-- ===== TAB: PDF ===== -->
     <div id="pane-pdf" class="hidden">
       <div class="card">
-        <div class="card-title"><span>ð</span> Generar Reporte PDF</div>
+        <div class="card-title"><span>📄</span> Generar Reporte PDF</div>
 
         <!-- Caja: solo hoy -->
         <div id="pdfCaja">
           <p style="color:var(--text-muted);margin-bottom:16px">Genera el reporte del inventario de <strong>hoy</strong>.</p>
-          <button class="btn btn-accent" onclick="generarPDF('hoy')">ð Descargar PDF del DÃ­a</button>
+          <button class="btn btn-accent" onclick="generarPDF('hoy')">📄 Descargar PDF del Día</button>
         </div>
 
         <!-- Admin: hoy + rango -->
         <div id="pdfAdmin" class="hidden">
           <div style="margin-bottom:20px">
             <p style="color:var(--text-muted);margin-bottom:14px">Genera el reporte del inventario de <strong>hoy</strong>.</p>
-            <button class="btn btn-accent" onclick="generarPDF('hoy')">ð PDF del DÃ­a</button>
+            <button class="btn btn-accent" onclick="generarPDF('hoy')">📄 PDF del Día</button>
           </div>
           <div class="divider"></div>
           <p style="color:var(--text-muted);margin-bottom:14px">O genera un reporte por <strong>rango de fechas</strong>.</p>
@@ -487,19 +487,19 @@
               <input type="date" id="pdfHasta">
             </div>
             <div class="form-group">
-              <label>TÃ­tulo del Reporte</label>
+              <label>Título del Reporte</label>
               <input type="text" id="pdfTitulo" placeholder="Reporte de Inventario" style="min-width:200px">
             </div>
           </div>
           <div style="margin-top:14px">
-            <button class="btn btn-primary" onclick="generarPDF('rango')">ð PDF por Rango</button>
+            <button class="btn btn-primary" onclick="generarPDF('rango')">📄 PDF por Rango</button>
           </div>
         </div>
       </div>
 
       <!-- Vista previa resumen -->
       <div class="card" id="pdfPreview" style="display:none">
-        <div class="card-title"><span>ðï¸</span> Vista Previa</div>
+        <div class="card-title"><span>👁️</span> Vista Previa</div>
         <div id="pdfPreviewContent"></div>
       </div>
     </div>
@@ -507,11 +507,11 @@
     <!-- ===== TAB: ADMIN ===== -->
     <div id="pane-admin" class="hidden">
       <div class="card">
-        <div class="card-title"><span>âï¸</span> Panel de AdministraciÃ³n</div>
+        <div class="card-title"><span>⚙️</span> Panel de Administración</div>
 
-        <!-- Cambiar contraseÃ±as -->
+        <!-- Cambiar contraseñas -->
         <div style="margin-bottom:24px">
-          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--text)">ð Cambiar ContraseÃ±as</h3>
+          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--text)">🔑 Cambiar Contraseñas</h3>
           <div class="form-grid" style="max-width:500px">
             <div class="form-group">
               <label>Usuario</label>
@@ -521,32 +521,32 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Nueva ContraseÃ±a</label>
-              <input type="password" id="nuevaPass" placeholder="Nueva contraseÃ±a">
+              <label>Nueva Contraseña</label>
+              <input type="password" id="nuevaPass" placeholder="Nueva contraseña">
             </div>
           </div>
           <div class="form-actions">
-            <button class="btn btn-primary" onclick="cambiarPassword()">ð Actualizar ContraseÃ±a</button>
+            <button class="btn btn-primary" onclick="cambiarPassword()">🔑 Actualizar Contraseña</button>
           </div>
         </div>
 
         <div class="divider"></div>
 
-        <!-- GestiÃ³n categorÃ­as -->
+        <!-- Gestión categorías -->
         <div style="margin-bottom:24px">
-          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--text)">ðï¸ CategorÃ­as Predefinidas</h3>
+          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--text)">🗂️ Categorías Predefinidas</h3>
           <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
-            <input type="text" id="nuevaCat" placeholder="Nueva categorÃ­a" style="padding:9px 13px;border:2px solid var(--border);border-radius:9px;font-size:0.9rem">
-            <button class="btn btn-primary" onclick="agregarCategoria()">â Agregar</button>
+            <input type="text" id="nuevaCat" placeholder="Nueva categoría" style="padding:9px 13px;border:2px solid var(--border);border-radius:9px;font-size:0.9rem">
+            <button class="btn btn-primary" onclick="agregarCategoria()">➕ Agregar</button>
           </div>
           <div id="listaCategorias" style="display:flex;gap:8px;flex-wrap:wrap"></div>
         </div>
 
         <div class="divider"></div>
 
-        <!-- EstadÃ­sticas globales -->
+        <!-- Estadísticas globales -->
         <div>
-          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--text)">ð EstadÃ­sticas Globales</h3>
+          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--text)">📊 Estadísticas Globales</h3>
           <div class="stats-grid" id="statsAdmin"></div>
         </div>
 
@@ -554,12 +554,12 @@
 
         <!-- Exportar todo -->
         <div>
-          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--text)">ð¾ Exportar / Importar Datos</h3>
+          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--text)">💾 Exportar / Importar Datos</h3>
           <div class="form-actions">
-            <button class="btn btn-success" onclick="exportarJSON()">â¬ï¸ Exportar JSON</button>
-            <button class="btn btn-outline" onclick="document.getElementById('importFile').click()">â¬ï¸ Importar JSON</button>
+            <button class="btn btn-success" onclick="exportarJSON()">⬇️ Exportar JSON</button>
+            <button class="btn btn-outline" onclick="document.getElementById('importFile').click()">⬆️ Importar JSON</button>
             <input type="file" id="importFile" accept=".json" class="hidden" onchange="importarJSON(event)">
-            <button class="btn btn-danger" onclick="confirmarLimpiarDatos()">ðï¸ Limpiar Todos los Datos</button>
+            <button class="btn btn-danger" onclick="confirmarLimpiarDatos()">🗑️ Limpiar Todos los Datos</button>
           </div>
         </div>
       </div>
@@ -571,7 +571,7 @@
 <!-- MODAL EDITAR -->
 <div class="modal-overlay" id="modalEditar">
   <div class="modal-box">
-    <div class="modal-title"><span>âï¸</span> Editar Registro</div>
+    <div class="modal-title"><span>✏️</span> Editar Registro</div>
     <div class="form-grid">
       <div class="form-group">
         <label>Fecha</label>
@@ -586,7 +586,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label>CategorÃ­a</label>
+        <label>Categoría</label>
         <input type="text" id="eCategoria">
       </div>
       <div class="form-group">
@@ -620,7 +620,7 @@
     </div>
     <div class="modal-actions">
       <button class="btn btn-outline" onclick="cerrarModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="guardarEdicion()">ð¾ Guardar</button>
+      <button class="btn btn-primary" onclick="guardarEdicion()">💾 Guardar</button>
     </div>
   </div>
 </div>
@@ -645,8 +645,8 @@ let state = {
 // PERSISTENCIA
 function getDB() {
   try {
-    return JSON.parse(localStorage.getItem('inventarioDB') || '{"registros":[],"categorias":["Pollos","Insumos","Empaques","Carnes","LÃ¡cteos","Verduras"],"users":{}}');
-  } catch { return {registros:[],categorias:["Pollos","Insumos","Empaques","Carnes","LÃ¡cteos","Verduras"],users:{}}; }
+    return JSON.parse(localStorage.getItem('inventarioDB') || '{"registros":[],"categorias":["Pollos","Insumos","Empaques","Carnes","Lácteos","Verduras"],"users":{}}');
+  } catch { return {registros:[],categorias:["Pollos","Insumos","Empaques","Carnes","Lácteos","Verduras"],users:{}}; }
 }
 function saveDB(db) { localStorage.setItem('inventarioDB', JSON.stringify(db)); }
 
@@ -697,7 +697,7 @@ function startApp() {
   roleEl.textContent = u.role;
   roleEl.className = 'role-tag ' + (u.role === 'caja' ? 'caja' : '');
 
-  // Tabs segÃºn rol
+  // Tabs según rol
   if (u.role === 'admin') {
     document.getElementById('tab-admin').classList.remove('hidden');
     document.getElementById('colAcciones').classList.remove('hidden');
@@ -754,7 +754,7 @@ function guardarRegistro() {
   const obs       = document.getElementById('fObservaciones').value.trim();
 
   if (!fecha || !categoria || !producto || cantidad <= 0) {
-    showToast('â ï¸ Completa los campos obligatorios (Fecha, CategorÃ­a, Producto, Cantidad)', 'error');
+    showToast('⚠️ Completa los campos obligatorios (Fecha, Categoría, Producto, Cantidad)', 'error');
     return;
   }
 
@@ -771,14 +771,14 @@ function guardarRegistro() {
   };
   db.registros.push(registro);
 
-  // Agregar categorÃ­a si no existe
+  // Agregar categoría si no existe
   if (categoria && !db.categorias.includes(categoria)) db.categorias.push(categoria);
 
   saveDB(db);
   initDataLists();
   renderIngresar();
   limpiarFormulario();
-  showToast('â Registro guardado correctamente', 'success');
+  showToast('✅ Registro guardado correctamente', 'success');
 }
 
 function limpiarFormulario() {
@@ -824,7 +824,7 @@ function renderIngresar() {
     empty.classList.add('hidden');
     tbody.innerHTML = recientes.map(r => `
       <tr>
-        <td>${r.hora || 'â'}</td>
+        <td>${r.hora || '—'}</td>
         <td><span class="badge badge-${r.tipo.toLowerCase()}">${r.tipo}</span></td>
         <td>${esc(r.categoria)}</td>
         <td>${esc(r.producto)}</td>
@@ -845,7 +845,7 @@ function renderRegistros(regs) {
   const all = regs !== undefined ? regs : db.registros;
   filteredRegs = all;
 
-  // Llenar categorÃ­as en filtro
+  // Llenar categorías en filtro
   const cats = [...new Set(db.registros.map(r=>r.categoria))].sort();
   const sel = document.getElementById('filtroCategoria');
   const cur = sel.value;
@@ -866,7 +866,7 @@ function renderRegistros(regs) {
     tbody.innerHTML = [...all].sort((a,b)=>b.id-a.id).map(r => `
       <tr>
         <td>${r.fecha}</td>
-        <td>${r.hora||'â'}</td>
+        <td>${r.hora||'—'}</td>
         <td><span class="badge badge-${r.tipo.toLowerCase()}">${r.tipo}</span></td>
         <td>${esc(r.categoria)}</td>
         <td>${esc(r.producto)}</td>
@@ -876,8 +876,8 @@ function renderRegistros(regs) {
         <td>$${fmt(r.total)}</td>
         <td>${esc(r.responsable)}</td>
         ${isAdmin ? `<td>
-          <button class="btn btn-outline btn-sm" onclick="editarRegistro(${r.id})">âï¸</button>
-          <button class="btn btn-danger btn-sm" onclick="eliminarRegistro(${r.id})">ðï¸</button>
+          <button class="btn btn-outline btn-sm" onclick="editarRegistro(${r.id})">✏️</button>
+          <button class="btn btn-danger btn-sm" onclick="eliminarRegistro(${r.id})">🗑️</button>
         </td>` : '<td></td>'}
       </tr>`).join('');
   }
@@ -950,16 +950,16 @@ function guardarEdicion() {
   saveDB(db);
   cerrarModal();
   renderRegistros();
-  showToast('â Registro actualizado', 'success');
+  showToast('✅ Registro actualizado', 'success');
 }
 function eliminarRegistro(id) {
-  if (!confirm('Â¿Seguro que deseas eliminar este registro?')) return;
+  if (!confirm('¿Seguro que deseas eliminar este registro?')) return;
   const db = getDB();
   db.registros = db.registros.filter(r => r.id !== id);
   saveDB(db);
   renderRegistros();
   renderIngresar();
-  showToast('ðï¸ Registro eliminado', 'success');
+  showToast('🗑️ Registro eliminado', 'success');
 }
 function cerrarModal() {
   document.getElementById('modalEditar').classList.remove('open');
@@ -985,13 +985,13 @@ function generarPDF(modo) {
   } else {
     const desde = document.getElementById('pdfDesde').value;
     const hasta = document.getElementById('pdfHasta').value;
-    if (!desde || !hasta) { showToast('â ï¸ Selecciona el rango de fechas', 'error'); return; }
+    if (!desde || !hasta) { showToast('⚠️ Selecciona el rango de fechas', 'error'); return; }
     regs = db.registros.filter(r => r.fecha >= desde && r.fecha <= hasta);
     titulo = document.getElementById('pdfTitulo').value || 'Reporte de Inventario';
-    subtitulo = `PerÃ­odo: ${formatFecha(desde)} â ${formatFecha(hasta)}`;
+    subtitulo = `Período: ${formatFecha(desde)} — ${formatFecha(hasta)}`;
   }
 
-  if (!regs.length) { showToast('â ï¸ No hay registros para el perÃ­odo seleccionado', 'error'); return; }
+  if (!regs.length) { showToast('⚠️ No hay registros para el período seleccionado', 'error'); return; }
 
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
@@ -1005,7 +1005,7 @@ function generarPDF(modo) {
   doc.setTextColor(255, 255, 255);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(16);
-  doc.text('ð¦ ' + titulo, 14, 10);
+  doc.text('📦 ' + titulo, 14, 10);
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
   doc.text(subtitulo, 14, 17);
@@ -1041,9 +1041,9 @@ function generarPDF(modo) {
 
   // Tabla
   y += 20;
-  const cols = ['Fecha','Hora','Tipo','CategorÃ­a','Producto','Cantidad','Unidad','Precio Unit.','Total','Responsable'];
+  const cols = ['Fecha','Hora','Tipo','Categoría','Producto','Cantidad','Unidad','Precio Unit.','Total','Responsable'];
   const rows = [...regs].sort((a,b)=>b.id-a.id).map(r => [
-    r.fecha, r.hora||'â', r.tipo, r.categoria, r.producto,
+    r.fecha, r.hora||'—', r.tipo, r.categoria, r.producto,
     fmt(r.cantidad), r.unidad, '$'+fmt(r.precio), '$'+fmt(r.total), r.responsable
   ]);
 
@@ -1063,14 +1063,14 @@ function generarPDF(modo) {
       doc.rect(0, PH-10, PW, 10, 'F');
       doc.setTextColor(255,255,255);
       doc.setFontSize(7);
-      doc.text(`PÃ¡gina ${data.pageNumber}`, PW/2, PH-4, {align:'center'});
-      doc.text('Inventario Diario â Sistema de GestiÃ³n', 14, PH-4);
+      doc.text(`Página ${data.pageNumber}`, PW/2, PH-4, {align:'center'});
+      doc.text('Inventario Diario — Sistema de Gestión', 14, PH-4);
     }
   });
 
   const fn = `inventario_${modo==='hoy'?hoy:document.getElementById('pdfDesde').value+'_'+document.getElementById('pdfHasta').value}.pdf`;
   doc.save(fn);
-  showToast('â PDF generado y descargado', 'success');
+  showToast('✅ PDF generado y descargado', 'success');
 }
 
 // ========================================================
@@ -1078,12 +1078,12 @@ function generarPDF(modo) {
 // ========================================================
 function renderAdmin() {
   const db = getDB();
-  // CategorÃ­as
+  // Categorías
   const lista = document.getElementById('listaCategorias');
   lista.innerHTML = (db.categorias||[]).map(c => `
     <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:0.82rem;display:inline-flex;align-items:center;gap:6px">
       ${esc(c)}
-      <button onclick="eliminarCategoria('${esc(c)}')" style="background:none;border:none;cursor:pointer;color:var(--danger);font-size:0.9rem;line-height:1">â</button>
+      <button onclick="eliminarCategoria('${esc(c)}')" style="background:none;border:none;cursor:pointer;color:var(--danger);font-size:0.9rem;line-height:1">✕</button>
     </span>`).join('');
 
   // Stats
@@ -1094,8 +1094,8 @@ function renderAdmin() {
   document.getElementById('statsAdmin').innerHTML = `
     <div class="stat-card"><div class="stat-label">Total Registros</div><div class="stat-value">${total}</div></div>
     <div class="stat-card orange"><div class="stat-label">Valor Total Inventariado</div><div class="stat-value orange">$${valorTotal.toLocaleString('es-CL',{minimumFractionDigits:0})}</div></div>
-    <div class="stat-card green"><div class="stat-label">DÃ­as con Registros</div><div class="stat-value green">${dias}</div></div>
-    <div class="stat-card"><div class="stat-label">Productos Ãnicos</div><div class="stat-value">${prods}</div></div>`;
+    <div class="stat-card green"><div class="stat-label">Días con Registros</div><div class="stat-value green">${dias}</div></div>
+    <div class="stat-card"><div class="stat-label">Productos Únicos</div><div class="stat-value">${prods}</div></div>`;
 }
 function agregarCategoria() {
   const val = document.getElementById('nuevaCat').value.trim();
@@ -1107,8 +1107,8 @@ function agregarCategoria() {
     initDataLists();
     renderAdmin();
     document.getElementById('nuevaCat').value = '';
-    showToast('â CategorÃ­a agregada');
-  } else { showToast('â ï¸ Ya existe esa categorÃ­a', 'error'); }
+    showToast('✅ Categoría agregada');
+  } else { showToast('⚠️ Ya existe esa categoría', 'error'); }
 }
 function eliminarCategoria(cat) {
   const db = getDB();
@@ -1116,15 +1116,15 @@ function eliminarCategoria(cat) {
   saveDB(db);
   initDataLists();
   renderAdmin();
-  showToast('ðï¸ CategorÃ­a eliminada');
+  showToast('🗑️ Categoría eliminada');
 }
 function cambiarPassword() {
   const user = document.getElementById('cambiarUsuario').value;
   const pass = document.getElementById('nuevaPass').value;
-  if (!pass || pass.length < 4) { showToast('â ï¸ La contraseÃ±a debe tener al menos 4 caracteres', 'error'); return; }
+  if (!pass || pass.length < 4) { showToast('⚠️ La contraseña debe tener al menos 4 caracteres', 'error'); return; }
   saveUserPass(user, pass);
   document.getElementById('nuevaPass').value = '';
-  showToast('â ContraseÃ±a actualizada para ' + user, 'success');
+  showToast('✅ Contraseña actualizada para ' + user, 'success');
 }
 function exportarJSON() {
   const db = getDB();
@@ -1133,7 +1133,7 @@ function exportarJSON() {
   a.href = URL.createObjectURL(blob);
   a.download = 'inventario_backup_' + new Date().toISOString().slice(0,10) + '.json';
   a.click();
-  showToast('â Datos exportados');
+  showToast('✅ Datos exportados');
 }
 function importarJSON(e) {
   const file = e.target.files[0];
@@ -1143,25 +1143,25 @@ function importarJSON(e) {
     try {
       const data = JSON.parse(ev.target.result);
       if (!data.registros) throw new Error();
-      if (confirm(`Â¿Importar ${data.registros.length} registros? Esto reemplazarÃ¡ los datos actuales.`)) {
+      if (confirm(`¿Importar ${data.registros.length} registros? Esto reemplazará los datos actuales.`)) {
         saveDB(data);
         renderAdmin();
         renderIngresar();
-        showToast('â Datos importados correctamente', 'success');
+        showToast('✅ Datos importados correctamente', 'success');
       }
-    } catch { showToast('â Archivo JSON invÃ¡lido', 'error'); }
+    } catch { showToast('❌ Archivo JSON inválido', 'error'); }
   };
   reader.readAsText(file);
   e.target.value = '';
 }
 function confirmarLimpiarDatos() {
-  if (confirm('â ï¸ Â¿Seguro? Esto eliminarÃ¡ TODOS los registros de inventario. Esta acciÃ³n no se puede deshacer.')) {
+  if (confirm('⚠️ ¿Seguro? Esto eliminará TODOS los registros de inventario. Esta acción no se puede deshacer.')) {
     const db = getDB();
     db.registros = [];
     saveDB(db);
     renderAdmin();
     renderIngresar();
-    showToast('ðï¸ Datos eliminados', 'success');
+    showToast('🗑️ Datos eliminados', 'success');
   }
 }
 
