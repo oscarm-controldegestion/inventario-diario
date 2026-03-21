@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventario Diario</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --primary-light: #2563a8;
+    --accent: #e8a020;
+    --accent-dark: #c47d0e;
+    --danger: #dc3545;
+    --success: #28a745;
+    --bg: #f0f4f8;
+    --card: #ffffff;
+    --text: #1a2535;
+    --text-muted: #6b7a8d;
+    --border: #d1dde8;
+    --shadow: 0 4px 20px rgba(26,58,92,0.10);
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* ======== LOGIN ======== */
+  #loginScreen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a3a5c 0%, #2563a8 50%, #1a3a5c 100%);
+  }
+  .login-box {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 48px 40px;
+    width: 380px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    text-align: center;
+  }
+  .login-logo {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 32px;
+  }
+  .login-box h1 { font-size: 1.6rem; color: var(--primary); margin-bottom: 6px; }
+  .login-box p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 28px; }
+  .login-box input {
+    width: 100%; padding: 12px 16px; border: 2px solid var(--border);
+    border-radius: 10px; font-size: 0.95rem; margin-bottom: 14px;
+    transition: border-color 0.2s; outline: none;
+  }
+  .login-box input:focus { border-color: var(--primary-light); }
+  .btn-login {
+    width: 100%; padding: 13px; background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: #fff; border: none; border-radius: 10px; font-size: 1rem;
+    font-weight: 600; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-login:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,168,0.4); }
+  .login-error { color: var(--danger); font-size: 0.85rem; margin-top: 10px; display: none; }
+  .login-users { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .login-users p { font-size: 0.78rem; color: var(--text-muted); }
+  .user-chips { display: flex; gap: 8px; justify-content: center; margin-top: 8px; }
+  .chip {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 20px;
+    padding: 5px 12px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s;
+  }
+  .chip:hover { background: var(--border); }
+
+  /* ======== LAYOUT ======== */
+  #app { display: none; min-height: 100vh; }
+  .topbar {
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    color: #fff; padding: 0 24px; height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 100;
+  }
+  .topbar-left { display: flex; align-items: center; gap: 12px; }
+  .topbar-logo { font-size: 22px; }
+  .topbar h2 { font-size: 1.1rem; font-weight: 700; }
+  .topbar-right { display: flex; align-items: center; gap: 14px; }
+  .user-badge {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.15); border-radius: 20px;
+    padding: 5px 12px; font-size: 0.85rem;
+  }
+  .role-tag {
+    background: var(--accent); color: #fff; font-size: 0.7rem;
+    font-weight: 700; padding: 2px 8px; border-radius: 10px; text-transform: uppercase;
+  }
+  .role-tag.caja { background: #17a2b8; }
+  .btn-logout {
+    background: rgba(255,255,255,0.2); border: none; color: #fff;
+    padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: 0.85rem;
+    transition: background 0.2s;
+  }
+  .btn-logout:hover { background: rgba(255,255,255,0.3); }
+
+  .main-content { padding: 28px 24px; max-width: 1200px; margin: 0 auto; }
+
+  /* ======== TABS ======== */
+  .tabs { display: flex; gap: 4px; margin-bottom: 24px; background: var(--card); padding: 6px; border-radius: 12px; box-shadow: var(--shadow); width: fit-content; }
+  .tab-btn {
+    padding: 9px 20px; border: none; border-radius: 8px; cursor: pointer;
+    font-size: 0.9rem; font-weight: 500; color: var(--text-muted);
+    background: transparent; transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+  }
+  .tab-btn.active { background: var(--primary); color: #fff; box-shadow: 0 2px 8px rgba(26,58,92,0.3); }
+  .tab-btn:hover:not(.active) { background: var(--bg); color: var(--text); }
+
+  /* ======== CARDS ======== */
+  .card { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 20px; }
+  .card-title { font-size: 1.05rem; font-weight: 700; color: var(--primary); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+  .card-title span { font-size: 1.2rem; }
+
+  /* ======== STATS ======== */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .stat-card {
+    background: var(--card); border-radius: var(--radius); padding: 20px 22px;
+    box-shadow: var(--shadow); border-left: 4px solid var(--primary);
+  }
+  .stat-card.green { border-left-color: var(--success); }
+  .stat-card.orange { border-left-color: var(--accent); }
+  .stat-card.red { border-left-color: var(--danger); }
+  .stat-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .stat-value { font-size: 1.7rem; font-weight: 800; color: var(--primary); }
+  .stat-value.green { color: var(--success); }
+  .stat-value.orange { color: var(--accent-dark); }
+
+  /* ======== FORM ======== */
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group label { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.4px; }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 10px 13px; border: 2px solid var(--border); border-radius: 9px;
+    font-size: 0.93rem; outline: none; transition: border-color 0.2s; background: var(--bg);
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary-light); background: #fff; }
+  .form-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+
+  /* ======== BUTTONS ======== */
+  .btn {
+    padding: 10px 20px; border: none; border-radius: 9px; font-size: 0.9rem;
+    font-weight: 600; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 6px;
+  }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-light); transform: translateY(-1px); }
+  .btn-accent { background: var(--accent); color: #fff; }
+  .btn-accent:hover { background: var(--accent-dark); transform: translateY(-1px); }
+  .btn-danger { background: var(--danger); color: #fff; }
+  .btn-danger:hover { filter: brightness(0.9); }
+  .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text); }
+  .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+  .btn-sm { padding: 6px 12px; font-size: 0.8rem; }
+  .btn-success { background: var(--success); color: #fff; }
+
+  /* ======== TABLE ======== */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  thead th {
+    background: var(--primary); color: #fff; padding: 11px 14px;
+    text-align: left; font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.4px;
+  }
+  thead th:first-child { border-radius: 8px 0 0 0; }
+  thead th:last-child { border-radius: 0 8px 0 0; }
+  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  tbody tr:hover { background: #f5f9ff; }
+  tbody td { padding: 10px 14px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 20px; font-size: 0.76rem; font-weight: 600;
+  }
+  .badge-entrada { background: #d4edda; color: #155724; }
+  .badge-salida { background: #f8d7da; color: #721c24; }
+  .badge-ajuste { background: #fff3cd; color: #856404; }
+
+  /* ======== FILTER BAR ======== */
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; align-items: flex-end; }
+  .filter-bar input, .filter-bar select {
+    padding: 9px 12px; border: 2px solid var(--border); border-radius: 9px;
+    font-size: 0.88rem; outline: none; background: #fff;
+  }
+  .filter-bar input:focus, .filter-bar select:focus { border-color: var(--primary-light); }
+
+  /* ======== PDF SECTION ======== */
+  .pdf-options { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
+  .pdf-options .form-group { min-width: 160px; }
+
+  /* ======== EMPTY STATE ======== */
+  .empty-state { text-align: center; padding: 48px 20px; color: var(--text-muted); }
+  .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+  .empty-state p { font-size: 0.95rem; }
+
+  /* ======== TOAST ======== */
+  #toast {
+    position: fixed; bottom: 28px; right: 28px; background: #1a2535; color: #fff;
+    padding: 12px 22px; border-radius: 12px; font-size: 0.9rem; font-weight: 500;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25); transform: translateY(80px); opacity: 0;
+    transition: all 0.3s ease; z-index: 9999; display: flex; align-items: center; gap: 8px;
+  }
+  #toast.show { transform: translateY(0); opacity: 1; }
+  #toast.success { background: var(--success); }
+  #toast.error { background: var(--danger); }
+
+  /* ======== MODAL ======== */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200;
+    display: flex; align-items: center; justify-content: center; display: none;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--card); border-radius: 16px; padding: 30px 28px; width: 500px;
+    max-width: 95vw; box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto;
+  }
+  .modal-title { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 20px; justify-content: flex-end; }
+
+  /* ======== RESPONSIVE ======== */
+  @media(max-width: 600px) {
+    .main-content { padding: 16px 14px; }
+    .login-box { width: 90vw; padding: 36px 24px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .topbar h2 { display: none; }
+  }
+
+  .hidden { display: none !important; }
+  .divider { height: 1px; background: var(--border); margin: 18px 0; }
+</style>
+</head>
+<body>
+
+<!-- ====== LOGIN ====== -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">ð¦</div>
+    <h1>Inventario Diario</h1>
+    <p>Sistema de gestiÃ³n de inventario</p>
+    <input type="text" id="loginUser" placeholder="Usuario" onkeydown="if(event.key==='Enter')doLogin()">
+    <input type="password" id="loginPass" placeholder="ContraseÃ±a" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn-login" onclick="doLogin()">ð Ingresar</button>
+    <p class="login-error" id="loginError">â Usuario o contraseÃ±a incorrectos</p>
+    <div class="login-users">
+      <p>Acceso rÃ¡pido (demo)</p>
+      <div class="user-chips">
+        <span class="chip" onclick="quickLogin('admin','admin123')">ð¤ Admin</span>
+        <span class="chip" onclick="quickLogin('caja','caja123')">ð§¾ Caja</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== APP ====== -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-logo">ð¦</span>
+      <h2>Inventario Diario</h2>
+    </div>
+    <div class="topbar-right">
+      <div class="user-badge">
+        <span id="topbarUser">â</span>
+        <span class="role-tag" id="topbarRole">â</span>
+      </div>
+      <button class="btn-logout" onclick="doLogout()">Salir</button>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('ingresar')" id="tab-ingresar">ð Ingresar</button>
+      <button class="tab-btn" onclick="showTab('registros')" id="tab-registros">ð Registros</button>
+      <button class="tab-btn" onclick="showTab('pdf')" id="tab-pdf">ð Exportar PDF</button>
+      <button class="tab-btn hidden" onclick="showTab('admin')" id="tab-admin">âï¸ Admin</button>
+    </div>
+
+    <!-- ===== TAB: INGRESAR ===== -->
+    <div id="pane-ingresar">
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card green">
+          <div class="stat-label">Entradas hoy</div>
+          <div class="stat-value green" id="statEntradas">0</div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-label">Salidas hoy</div>
+          <div class="stat-value" style="color:var(--danger)" id="statSalidas">0</div>
+        </div>
+        <div class="stat-card orange">
+          <div class="stat-label">Total registros hoy</div>
+          <div class="stat-value orange" id="statTotal">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">CategorÃ­as activas</div>
+          <div class="stat-value" id="statCategorias">0</div>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <div class="card">
+        <div class="card-title"><span>â</span> Nuevo Registro de Inventario</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Fecha</label>
+            <input type="date" id="fFecha">
+          </div>
+          <div class="form-group">
+            <label>Tipo de Movimiento</label>
+            <select id="fTipo">
+              <option value="Entrada">ð¥ Entrada</option>
+              <option value="Salida">ð¤ Salida</option>
+              <option value="Ajuste">âï¸ Ajuste</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>CategorÃ­a / Ãrea</label>
+            <input type="text" id="fCategoria" placeholder="Ej: Pollos, Insumos, Empaques" list="catList">
+            <datalist id="catList"></datalist>
+          </div>
+          <div class="form-group">
+            <label>Producto / Nombre</label>
+            <input type="text" id="fProducto" placeholder="Ej: Pollo entero 2kg" list="prodList">
+            <datalist id="prodList"></datalist>
+          </div>
+          <div class="form-group">
+            <label>Cantidad</label>
+            <input type="number" id="fCantidad" placeholder="0" min="0" step="0.01">
+          </div>
+          <div class="form-group">
+            <label>Unidad</label>
+            <select id="fUnidad">
+              <option>Kg</option>
+              <option>Unidades</option>
+              <option>Cajas</option>
+              <option>Litros</option>
+              <option>Sacos</option>
+              <option>Bandejas</option>
+              <option>Porciones</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Precio Unitario ($)</label>
+            <input type="number" id="fPrecio" placeholder="0.00" min="0" step="0.01">
+          </div>
+          <div class="form-group">
+            <label>Responsable</label>
+            <input type="text" id="fResponsable" placeholder="Nombre del responsable">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:14px">
+          <label>Observaciones</label>
+          <textarea id="fObservaciones" rows="2" placeholder="Notas adicionales..." style="resize:vertical"></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="guardarRegistro()">ð¾ Guardar Registro</button>
+          <button class="btn btn-outline" onclick="limpiarFormulario()">ð Limpiar</button>
+        </div>
+      </div>
+
+      <!-- Ãltimos registros del dÃ­a -->
+      <div class="card">
+        <div class="card-title"><span>ð</span> Ãltimos registros de hoy</div>
+        <div class="table-wrap">
+          <table id="tablaDia">
+            <thead>
+              <tr>
+                <th>Hora</th>
+                <th>Tipo</th>
+                <th>CategorÃ­a</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unit.</th>
+                <th>Total</th>
+                <th>Responsable</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyDia"></tbody>
+          </table>
+        </div>
+        <div class="empty-state hidden" id="emptyDia">
+          <div class="icon">ð</div>
+          <p>No hay registros para hoy aÃºn</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: REGISTROS ===== -->
+    <div id="pane-registros" class="hidden">
+      <div class="card">
+        <div class="card-title"><span>ð</span> Buscar y Filtrar Registros</div>
+        <div class="filter-bar">
+          <div class="form-group">
+            <label>Desde</label>
+            <input type="date" id="filtroDesde">
+          </div>
+          <div class="form-group">
+            <label>Hasta</label>
+            <input type="date" id="filtroHasta">
+          </div>
+          <div class="form-group">
+            <label>CategorÃ­a</label>
+            <select id="filtroCategoria"><option value="">Todas</option></select>
+          </div>
+          <div class="form-group">
+            <label>Tipo</label>
+            <select id="filtroTipo">
+              <option value="">Todos</option>
+              <option>Entrada</option>
+              <option>Salida</option>
+              <option>Ajuste</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Buscar</label>
+            <input type="text" id="filtroBuscar" placeholder="Producto, responsable...">
+          </div>
+          <button class="btn btn-primary" onclick="aplicarFiltros()" style="margin-bottom:0">ð Buscar</button>
+          <button class="btn btn-outline" onclick="limpiarFiltros()" style="margin-bottom:0">â Limpiar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="justify-content:space-between">
+          <span style="display:flex;align-items:center;gap:8px"><span>ð</span> Registros</span>
+          <span id="countRegistros" style="font-size:0.85rem;color:var(--text-muted)"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Tipo</th>
+                <th>CategorÃ­a</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Unidad</th>
+                <th>Precio Unit.</th>
+                <th>Total</th>
+                <th>Responsable</th>
+                <th id="colAcciones" class="hidden">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyRegistros"></tbody>
+          </table>
+        </div>
+        <div class="empty-state hidden" id="emptyRegistros">
+          <div class="icon">ð</div>
+          <p>No se encontraron registros</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: PDF ===== -->
+    <div id="pane-pdf" class="hidden">
+      <div class="card">
+        <div class="card-title"><span>ð</span> Generar Reporte PDF</div>
+
+        <!-- Caja: solo hoy -->
+        <div id="pdfCaja">
+          <p style="color:var(--text-muted);margin-bottom:16px">Genera el reporte del inventario de <strong>hoy</strong>.</p>
+          <button class="btn btn-accent" onclick="generarPDF('hoy')">ð Descargar PDF del DÃ­a</button>
+        </div>
+
+        <!-- Admin: hoy + rango -->
+        <div id="pdfAdmin" class="hidden">
+          <div style="margin-bottom:20px">
+            <p style="color:var(--text-muted);margin-bottom:14px">Genera el reporte del inventario de <strong>hoy</strong>.</p>
+            <button class="btn btn-accent" onclick="generarPDF('hoy')">ð PDF del DÃ­a</button>
+          </div>
+          <div class="divider"></div>
+          <p style="color:var(--text-muted);margin-bottom:14px">O genera un reporte por <strong>rango de fechas</strong>.</p>
+          <div class="pdf-options">
+            <div class="form-group">
+              <label>Fecha Inicio</label>
+              <input type="date" id="pdfDesde">
+            </div>
+            <div class="form-group">
+              <label>Fecha Fin</label>
+              <input type="date" id="pdfHasta">
+            </div>
+            <div class="form-group">
+              <label>TÃ­tulo del Reporte</label>
+              <input type="text" id="pdfTitulo" placeholder="Reporte de Inventario" style="min-width:200px">
+            </div>
+          </div>
+          <div style="margin-top:14px">
+            <button class="btn btn-primary" onclick="generarPDF('rango')">ð PDF por Rango</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vista previa resumen -->
+      <div class="card" id="pdfPreview" style="display:none">
+        <div class="card-title"><span>ðï¸</span> Vista Previa</div>
+        <div id="pdfPreviewContent"></div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: ADMIN ===== -->
+    <div id="pane-admin" class="hidden">
+      <div class="card">
+        <div class="card-title"><span>âï¸</span> Panel de AdministraciÃ³n</div>
+
+        <!-- Cambiar contraseÃ±as -->
+        <div style="margin-bottom:24px">
+          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--text)">ð Cambiar ContraseÃ±as</h3>
+          <div class="form-grid" style="max-width:500px">
+            <div class="form-group">
+              <label>Usuario</label>
+              <select id="cambiarUsuario">
+                <option value="admin">admin</option>
+                <option value="caja">caja</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Nueva ContraseÃ±a</label>
+              <input type="password" id="nuevaPass" placeholder="Nueva contraseÃ±a">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="cambiarPassword()">ð Actualizar ContraseÃ±a</button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- GestiÃ³n categorÃ­as -->
+        <div style="margin-bottom:24px">
+          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--text)">ðï¸ CategorÃ­as Predefinidas</h3>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+            <input type="text" id="nuevaCat" placeholder="Nueva categorÃ­a" style="padding:9px 13px;border:2px solid var(--border);border-radius:9px;font-size:0.9rem">
+            <button class="btn btn-primary" onclick="agregarCategoria()">â Agregar</button>
+          </div>
+          <div id="listaCategorias" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- EstadÃ­sticas globales -->
+        <div>
+          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--text)">ð EstadÃ­sticas Globales</h3>
+          <div class="stats-grid" id="statsAdmin"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Exportar todo -->
+        <div>
+          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--text)">ð¾ Exportar / Importar Datos</h3>
+          <div class="form-actions">
+            <button class="btn btn-success" onclick="exportarJSON()">â¬ï¸ Exportar JSON</button>
+            <button class="btn btn-outline" onclick="document.getElementById('importFile').click()">â¬ï¸ Importar JSON</button>
+            <input type="file" id="importFile" accept=".json" class="hidden" onchange="importarJSON(event)">
+            <button class="btn btn-danger" onclick="confirmarLimpiarDatos()">ðï¸ Limpiar Todos los Datos</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main-content -->
+</div><!-- /app -->
+
+<!-- MODAL EDITAR -->
+<div class="modal-overlay" id="modalEditar">
+  <div class="modal-box">
+    <div class="modal-title"><span>âï¸</span> Editar Registro</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Fecha</label>
+        <input type="date" id="eFecha">
+      </div>
+      <div class="form-group">
+        <label>Tipo</label>
+        <select id="eTipo">
+          <option>Entrada</option>
+          <option>Salida</option>
+          <option>Ajuste</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>CategorÃ­a</label>
+        <input type="text" id="eCategoria">
+      </div>
+      <div class="form-group">
+        <label>Producto</label>
+        <input type="text" id="eProducto">
+      </div>
+      <div class="form-group">
+        <label>Cantidad</label>
+        <input type="number" id="eCantidad" min="0" step="0.01">
+      </div>
+      <div class="form-group">
+        <label>Unidad</label>
+        <select id="eUnidad">
+          <option>Kg</option><option>Unidades</option><option>Cajas</option>
+          <option>Litros</option><option>Sacos</option><option>Bandejas</option>
+          <option>Porciones</option><option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Precio Unitario</label>
+        <input type="number" id="ePrecio" min="0" step="0.01">
+      </div>
+      <div class="form-group">
+        <label>Responsable</label>
+        <input type="text" id="eResponsable">
+      </div>
+    </div>
+    <div class="form-group" style="margin-top:14px">
+      <label>Observaciones</label>
+      <textarea id="eObservaciones" rows="2" style="resize:vertical"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="cerrarModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="guardarEdicion()">ð¾ Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+// ========================================================
+//  DATOS Y ESTADO
+// ========================================================
+const USERS = {
+  admin: { password: 'admin123', role: 'admin', nombre: 'Administrador' },
+  caja:  { password: 'caja123',  role: 'caja',  nombre: 'Cajero' }
+};
+
+let state = {
+  currentUser: null,
+  editingId: null
+};
+
+// PERSISTENCIA
+function getDB() {
+  try {
+    return JSON.parse(localStorage.getItem('inventarioDB') || '{"registros":[],"categorias":["Pollos","Insumos","Empaques","Carnes","LÃ¡cteos","Verduras"],"users":{}}');
+  } catch { return {registros:[],categorias:["Pollos","Insumos","Empaques","Carnes","LÃ¡cteos","Verduras"],users:{}}; }
+}
+function saveDB(db) { localStorage.setItem('inventarioDB', JSON.stringify(db)); }
+
+function getUsers() {
+  const db = getDB();
+  return { ...USERS, ...(db.users || {}) };
+}
+function saveUserPass(username, newPass) {
+  const db = getDB();
+  if (!db.users) db.users = {};
+  db.users[username] = { ...USERS[username], password: newPass };
+  saveDB(db);
+}
+
+// ========================================================
+//  LOGIN
+// ========================================================
+function doLogin() {
+  const u = document.getElementById('loginUser').value.trim().toLowerCase();
+  const p = document.getElementById('loginPass').value;
+  const users = getUsers();
+  if (users[u] && users[u].password === p) {
+    state.currentUser = { username: u, ...users[u] };
+    startApp();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+  }
+}
+function quickLogin(u, p) {
+  document.getElementById('loginUser').value = u;
+  document.getElementById('loginPass').value = p;
+  doLogin();
+}
+function doLogout() {
+  state.currentUser = null;
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPass').value = '';
+  document.getElementById('loginError').style.display = 'none';
+}
+function startApp() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  const u = state.currentUser;
+  document.getElementById('topbarUser').textContent = u.nombre;
+  const roleEl = document.getElementById('topbarRole');
+  roleEl.textContent = u.role;
+  roleEl.className = 'role-tag ' + (u.role === 'caja' ? 'caja' : '');
+
+  // Tabs segÃºn rol
+  if (u.role === 'admin') {
+    document.getElementById('tab-admin').classList.remove('hidden');
+    document.getElementById('colAcciones').classList.remove('hidden');
+    document.getElementById('pdfAdmin').classList.remove('hidden');
+    document.getElementById('pdfCaja').classList.add('hidden');
+  } else {
+    document.getElementById('tab-admin').classList.add('hidden');
+    document.getElementById('pdfCaja').classList.remove('hidden');
+    document.getElementById('pdfAdmin').classList.add('hidden');
+  }
+
+  setTodayDates();
+  initDataLists();
+  renderIngresar();
+  showTab('ingresar');
+}
+function setTodayDates() {
+  const hoy = new Date().toISOString().slice(0, 10);
+  document.getElementById('fFecha').value = hoy;
+  document.getElementById('filtroDesde').value = hoy;
+  document.getElementById('filtroHasta').value = hoy;
+  document.getElementById('pdfDesde') && (document.getElementById('pdfDesde').value = hoy);
+  document.getElementById('pdfHasta') && (document.getElementById('pdfHasta').value = hoy);
+  document.getElementById('pdfTitulo') && (document.getElementById('pdfTitulo').value = 'Reporte de Inventario');
+}
+
+// ========================================================
+//  TABS
+// ========================================================
+const PANES = ['ingresar','registros','pdf','admin'];
+function showTab(name) {
+  PANES.forEach(t => {
+    document.getElementById('pane-'+t)?.classList.add('hidden');
+    document.getElementById('tab-'+t)?.classList.remove('active');
+  });
+  document.getElementById('pane-'+name)?.classList.remove('hidden');
+  document.getElementById('tab-'+name)?.classList.add('active');
+  if (name === 'registros') renderRegistros();
+  if (name === 'admin' && state.currentUser?.role === 'admin') renderAdmin();
+}
+
+// ========================================================
+//  GUARDAR REGISTRO
+// ========================================================
+function guardarRegistro() {
+  const fecha     = document.getElementById('fFecha').value;
+  const tipo      = document.getElementById('fTipo').value;
+  const categoria = document.getElementById('fCategoria').value.trim();
+  const producto  = document.getElementById('fProducto').value.trim();
+  const cantidad  = parseFloat(document.getElementById('fCantidad').value) || 0;
+  const unidad    = document.getElementById('fUnidad').value;
+  const precio    = parseFloat(document.getElementById('fPrecio').value) || 0;
+  const responsable = document.getElementById('fResponsable').value.trim();
+  const obs       = document.getElementById('fObservaciones').value.trim();
+
+  if (!fecha || !categoria || !producto || cantidad <= 0) {
+    showToast('â ï¸ Completa los campos obligatorios (Fecha, CategorÃ­a, Producto, Cantidad)', 'error');
+    return;
+  }
+
+  const db = getDB();
+  const now = new Date();
+  const registro = {
+    id: Date.now(),
+    fecha, tipo, categoria, producto, cantidad, unidad, precio,
+    total: cantidad * precio,
+    responsable: responsable || state.currentUser.nombre,
+    observaciones: obs,
+    hora: now.toTimeString().slice(0,5),
+    registradoPor: state.currentUser.username
+  };
+  db.registros.push(registro);
+
+  // Agregar categorÃ­a si no existe
+  if (categoria && !db.categorias.includes(categoria)) db.categorias.push(categoria);
+
+  saveDB(db);
+  initDataLists();
+  renderIngresar();
+  limpiarFormulario();
+  showToast('â Registro guardado correctamente', 'success');
+}
+
+function limpiarFormulario() {
+  const hoy = new Date().toISOString().slice(0,10);
+  document.getElementById('fFecha').value = hoy;
+  document.getElementById('fTipo').value = 'Entrada';
+  document.getElementById('fCategoria').value = '';
+  document.getElementById('fProducto').value = '';
+  document.getElementById('fCantidad').value = '';
+  document.getElementById('fUnidad').value = 'Kg';
+  document.getElementById('fPrecio').value = '';
+  document.getElementById('fResponsable').value = '';
+  document.getElementById('fObservaciones').value = '';
+  document.getElementById('fCategoria').focus();
+}
+
+// ========================================================
+//  RENDER INGRESAR (stats + tabla hoy)
+// ========================================================
+function renderIngresar() {
+  const hoy = new Date().toISOString().slice(0,10);
+  const db = getDB();
+  const hoyRegs = db.registros.filter(r => r.fecha === hoy);
+
+  const entradas = hoyRegs.filter(r => r.tipo === 'Entrada').length;
+  const salidas  = hoyRegs.filter(r => r.tipo === 'Salida').length;
+  const cats     = [...new Set(hoyRegs.map(r => r.categoria))].length;
+
+  document.getElementById('statEntradas').textContent   = entradas;
+  document.getElementById('statSalidas').textContent    = salidas;
+  document.getElementById('statTotal').textContent      = hoyRegs.length;
+  document.getElementById('statCategorias').textContent = cats;
+
+  const tbody = document.getElementById('tbodyDia');
+  const empty = document.getElementById('emptyDia');
+  const recientes = [...hoyRegs].sort((a,b) => b.id - a.id).slice(0, 15);
+
+  if (!recientes.length) {
+    document.getElementById('tablaDia').style.display = 'none';
+    empty.classList.remove('hidden');
+  } else {
+    document.getElementById('tablaDia').style.display = '';
+    empty.classList.add('hidden');
+    tbody.innerHTML = recientes.map(r => `
+      <tr>
+        <td>${r.hora || 'â'}</td>
+        <td><span class="badge badge-${r.tipo.toLowerCase()}">${r.tipo}</span></td>
+        <td>${esc(r.categoria)}</td>
+        <td>${esc(r.producto)}</td>
+        <td><strong>${fmt(r.cantidad)}</strong> ${esc(r.unidad)}</td>
+        <td>$${fmt(r.precio)}</td>
+        <td>$${fmt(r.total)}</td>
+        <td>${esc(r.responsable)}</td>
+      </tr>`).join('');
+  }
+}
+
+// ========================================================
+//  RENDER REGISTROS
+// ========================================================
+let filteredRegs = [];
+function renderRegistros(regs) {
+  const db = getDB();
+  const all = regs !== undefined ? regs : db.registros;
+  filteredRegs = all;
+
+  // Llenar categorÃ­as en filtro
+  const cats = [...new Set(db.registros.map(r=>r.categoria))].sort();
+  const sel = document.getElementById('filtroCategoria');
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">Todas</option>' + cats.map(c=>`<option ${c===cur?'selected':''}>${c}</option>`).join('');
+
+  const tbody = document.getElementById('tbodyRegistros');
+  const empty = document.getElementById('emptyRegistros');
+  const isAdmin = state.currentUser?.role === 'admin';
+
+  document.getElementById('countRegistros').textContent = `${all.length} registro${all.length!==1?'s':''}`;
+
+  if (!all.length) {
+    document.querySelector('#pane-registros table').style.display = 'none';
+    empty.classList.remove('hidden');
+  } else {
+    document.querySelector('#pane-registros table').style.display = '';
+    empty.classList.add('hidden');
+    tbody.innerHTML = [...all].sort((a,b)=>b.id-a.id).map(r => `
+      <tr>
+        <td>${r.fecha}</td>
+        <td>${r.hora||'â'}</td>
+        <td><span class="badge badge-${r.tipo.toLowerCase()}">${r.tipo}</span></td>
+        <td>${esc(r.categoria)}</td>
+        <td>${esc(r.producto)}</td>
+        <td>${fmt(r.cantidad)}</td>
+        <td>${esc(r.unidad)}</td>
+        <td>$${fmt(r.precio)}</td>
+        <td>$${fmt(r.total)}</td>
+        <td>${esc(r.responsable)}</td>
+        ${isAdmin ? `<td>
+          <button class="btn btn-outline btn-sm" onclick="editarRegistro(${r.id})">âï¸</button>
+          <button class="btn btn-danger btn-sm" onclick="eliminarRegistro(${r.id})">ðï¸</button>
+        </td>` : '<td></td>'}
+      </tr>`).join('');
+  }
+}
+function aplicarFiltros() {
+  const db = getDB();
+  let regs = db.registros;
+  const desde  = document.getElementById('filtroDesde').value;
+  const hasta  = document.getElementById('filtroHasta').value;
+  const cat    = document.getElementById('filtroCategoria').value;
+  const tipo   = document.getElementById('filtroTipo').value;
+  const buscar = document.getElementById('filtroBuscar').value.toLowerCase();
+
+  if (desde) regs = regs.filter(r => r.fecha >= desde);
+  if (hasta) regs = regs.filter(r => r.fecha <= hasta);
+  if (cat)   regs = regs.filter(r => r.categoria === cat);
+  if (tipo)  regs = regs.filter(r => r.tipo === tipo);
+  if (buscar) regs = regs.filter(r =>
+    r.producto.toLowerCase().includes(buscar) ||
+    r.responsable.toLowerCase().includes(buscar) ||
+    r.categoria.toLowerCase().includes(buscar) ||
+    (r.observaciones||'').toLowerCase().includes(buscar));
+
+  renderRegistros(regs);
+}
+function limpiarFiltros() {
+  const hoy = new Date().toISOString().slice(0,10);
+  document.getElementById('filtroDesde').value = hoy;
+  document.getElementById('filtroHasta').value = hoy;
+  document.getElementById('filtroCategoria').value = '';
+  document.getElementById('filtroTipo').value = '';
+  document.getElementById('filtroBuscar').value = '';
+  renderRegistros();
+}
+
+// ========================================================
+//  EDITAR / ELIMINAR (ADMIN)
+// ========================================================
+function editarRegistro(id) {
+  const db = getDB();
+  const r = db.registros.find(x => x.id === id);
+  if (!r) return;
+  state.editingId = id;
+  document.getElementById('eFecha').value = r.fecha;
+  document.getElementById('eTipo').value = r.tipo;
+  document.getElementById('eCategoria').value = r.categoria;
+  document.getElementById('eProducto').value = r.producto;
+  document.getElementById('eCantidad').value = r.cantidad;
+  document.getElementById('eUnidad').value = r.unidad;
+  document.getElementById('ePrecio').value = r.precio;
+  document.getElementById('eResponsable').value = r.responsable;
+  document.getElementById('eObservaciones').value = r.observaciones || '';
+  document.getElementById('modalEditar').classList.add('open');
+}
+function guardarEdicion() {
+  const db = getDB();
+  const idx = db.registros.findIndex(x => x.id === state.editingId);
+  if (idx < 0) return;
+  const r = db.registros[idx];
+  r.fecha        = document.getElementById('eFecha').value;
+  r.tipo         = document.getElementById('eTipo').value;
+  r.categoria    = document.getElementById('eCategoria').value.trim();
+  r.producto     = document.getElementById('eProducto').value.trim();
+  r.cantidad     = parseFloat(document.getElementById('eCantidad').value) || 0;
+  r.unidad       = document.getElementById('eUnidad').value;
+  r.precio       = parseFloat(document.getElementById('ePrecio').value) || 0;
+  r.total        = r.cantidad * r.precio;
+  r.responsable  = document.getElementById('eResponsable').value.trim();
+  r.observaciones= document.getElementById('eObservaciones').value.trim();
+  saveDB(db);
+  cerrarModal();
+  renderRegistros();
+  showToast('â Registro actualizado', 'success');
+}
+function eliminarRegistro(id) {
+  if (!confirm('Â¿Seguro que deseas eliminar este registro?')) return;
+  const db = getDB();
+  db.registros = db.registros.filter(r => r.id !== id);
+  saveDB(db);
+  renderRegistros();
+  renderIngresar();
+  showToast('ðï¸ Registro eliminado', 'success');
+}
+function cerrarModal() {
+  document.getElementById('modalEditar').classList.remove('open');
+  state.editingId = null;
+}
+document.getElementById('modalEditar').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalEditar')) cerrarModal();
+});
+
+// ========================================================
+//  PDF
+// ========================================================
+function generarPDF(modo) {
+  const db = getDB();
+  let regs, titulo, subtitulo;
+  const hoy = new Date().toISOString().slice(0,10);
+  const hoyFmt = formatFecha(hoy);
+
+  if (modo === 'hoy') {
+    regs = db.registros.filter(r => r.fecha === hoy);
+    titulo = 'Reporte de Inventario Diario';
+    subtitulo = `Fecha: ${hoyFmt}`;
+  } else {
+    const desde = document.getElementById('pdfDesde').value;
+    const hasta = document.getElementById('pdfHasta').value;
+    if (!desde || !hasta) { showToast('â ï¸ Selecciona el rango de fechas', 'error'); return; }
+    regs = db.registros.filter(r => r.fecha >= desde && r.fecha <= hasta);
+    titulo = document.getElementById('pdfTitulo').value || 'Reporte de Inventario';
+    subtitulo = `PerÃ­odo: ${formatFecha(desde)} â ${formatFecha(hasta)}`;
+  }
+
+  if (!regs.length) { showToast('â ï¸ No hay registros para el perÃ­odo seleccionado', 'error'); return; }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+
+  const PW = doc.internal.pageSize.getWidth();
+  const PH = doc.internal.pageSize.getHeight();
+
+  // Header
+  doc.setFillColor(26, 58, 92);
+  doc.rect(0, 0, PW, 24, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  doc.text('ð¦ ' + titulo, 14, 10);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  doc.text(subtitulo, 14, 17);
+
+  const fechaGen = new Date().toLocaleString('es-CL');
+  doc.text(`Generado: ${fechaGen} | Por: ${state.currentUser.nombre}`, PW - 14, 17, { align: 'right' });
+
+  // Resumen
+  let y = 32;
+  const entradas = regs.filter(r=>r.tipo==='Entrada');
+  const salidas  = regs.filter(r=>r.tipo==='Salida');
+  const totalVal = regs.reduce((s,r)=>s+r.total,0);
+
+  const boxes = [
+    { label: 'Total Registros', val: regs.length, color: [26,58,92] },
+    { label: 'Entradas', val: entradas.length, color: [40,167,69] },
+    { label: 'Salidas', val: salidas.length, color: [220,53,69] },
+    { label: 'Valor Total', val: '$'+totalVal.toLocaleString('es-CL',{minimumFractionDigits:0}), color: [232,160,32] },
+  ];
+  const bw = 55, bh = 14, bx0 = 14;
+  boxes.forEach((b, i) => {
+    const bx = bx0 + i*(bw+4);
+    doc.setFillColor(...b.color);
+    doc.roundedRect(bx, y, bw, bh, 2, 2, 'F');
+    doc.setTextColor(255,255,255);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.text(String(b.val), bx + bw/2, y + 6.5, {align:'center'});
+    doc.setFontSize(7);
+    doc.setFont('helvetica', 'normal');
+    doc.text(b.label, bx + bw/2, y + 11.5, {align:'center'});
+  });
+
+  // Tabla
+  y += 20;
+  const cols = ['Fecha','Hora','Tipo','CategorÃ­a','Producto','Cantidad','Unidad','Precio Unit.','Total','Responsable'];
+  const rows = [...regs].sort((a,b)=>b.id-a.id).map(r => [
+    r.fecha, r.hora||'â', r.tipo, r.categoria, r.producto,
+    fmt(r.cantidad), r.unidad, '$'+fmt(r.precio), '$'+fmt(r.total), r.responsable
+  ]);
+
+  doc.autoTable({
+    startY: y,
+    head: [cols],
+    body: rows,
+    theme: 'striped',
+    styles: { fontSize: 8, cellPadding: 2.5 },
+    headStyles: { fillColor: [26,58,92], textColor: 255, fontStyle: 'bold' },
+    alternateRowStyles: { fillColor: [240,244,248] },
+    columnStyles: { 2: { cellWidth: 18 }, 5: { halign:'right' }, 8: { halign:'right' } },
+    margin: { left: 14, right: 14 },
+    didDrawPage: function(data) {
+      // Footer
+      doc.setFillColor(26,58,92);
+      doc.rect(0, PH-10, PW, 10, 'F');
+      doc.setTextColor(255,255,255);
+      doc.setFontSize(7);
+      doc.text(`PÃ¡gina ${data.pageNumber}`, PW/2, PH-4, {align:'center'});
+      doc.text('Inventario Diario â Sistema de GestiÃ³n', 14, PH-4);
+    }
+  });
+
+  const fn = `inventario_${modo==='hoy'?hoy:document.getElementById('pdfDesde').value+'_'+document.getElementById('pdfHasta').value}.pdf`;
+  doc.save(fn);
+  showToast('â PDF generado y descargado', 'success');
+}
+
+// ========================================================
+//  ADMIN
+// ========================================================
+function renderAdmin() {
+  const db = getDB();
+  // CategorÃ­as
+  const lista = document.getElementById('listaCategorias');
+  lista.innerHTML = (db.categorias||[]).map(c => `
+    <span style="background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:0.82rem;display:inline-flex;align-items:center;gap:6px">
+      ${esc(c)}
+      <button onclick="eliminarCategoria('${esc(c)}')" style="background:none;border:none;cursor:pointer;color:var(--danger);font-size:0.9rem;line-height:1">â</button>
+    </span>`).join('');
+
+  // Stats
+  const total = db.registros.length;
+  const valorTotal = db.registros.reduce((s,r)=>s+r.total,0);
+  const dias = [...new Set(db.registros.map(r=>r.fecha))].length;
+  const prods = [...new Set(db.registros.map(r=>r.producto))].length;
+  document.getElementById('statsAdmin').innerHTML = `
+    <div class="stat-card"><div class="stat-label">Total Registros</div><div class="stat-value">${total}</div></div>
+    <div class="stat-card orange"><div class="stat-label">Valor Total Inventariado</div><div class="stat-value orange">$${valorTotal.toLocaleString('es-CL',{minimumFractionDigits:0})}</div></div>
+    <div class="stat-card green"><div class="stat-label">DÃ­as con Registros</div><div class="stat-value green">${dias}</div></div>
+    <div class="stat-card"><div class="stat-label">Productos Ãnicos</div><div class="stat-value">${prods}</div></div>`;
+}
+function agregarCategoria() {
+  const val = document.getElementById('nuevaCat').value.trim();
+  if (!val) return;
+  const db = getDB();
+  if (!db.categorias.includes(val)) {
+    db.categorias.push(val);
+    saveDB(db);
+    initDataLists();
+    renderAdmin();
+    document.getElementById('nuevaCat').value = '';
+    showToast('â CategorÃ­a agregada');
+  } else { showToast('â ï¸ Ya existe esa categorÃ­a', 'error'); }
+}
+function eliminarCategoria(cat) {
+  const db = getDB();
+  db.categorias = db.categorias.filter(c=>c!==cat);
+  saveDB(db);
+  initDataLists();
+  renderAdmin();
+  showToast('ðï¸ CategorÃ­a eliminada');
+}
+function cambiarPassword() {
+  const user = document.getElementById('cambiarUsuario').value;
+  const pass = document.getElementById('nuevaPass').value;
+  if (!pass || pass.length < 4) { showToast('â ï¸ La contraseÃ±a debe tener al menos 4 caracteres', 'error'); return; }
+  saveUserPass(user, pass);
+  document.getElementById('nuevaPass').value = '';
+  showToast('â ContraseÃ±a actualizada para ' + user, 'success');
+}
+function exportarJSON() {
+  const db = getDB();
+  const blob = new Blob([JSON.stringify(db, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'inventario_backup_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  showToast('â Datos exportados');
+}
+function importarJSON(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (!data.registros) throw new Error();
+      if (confirm(`Â¿Importar ${data.registros.length} registros? Esto reemplazarÃ¡ los datos actuales.`)) {
+        saveDB(data);
+        renderAdmin();
+        renderIngresar();
+        showToast('â Datos importados correctamente', 'success');
+      }
+    } catch { showToast('â Archivo JSON invÃ¡lido', 'error'); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+function confirmarLimpiarDatos() {
+  if (confirm('â ï¸ Â¿Seguro? Esto eliminarÃ¡ TODOS los registros de inventario. Esta acciÃ³n no se puede deshacer.')) {
+    const db = getDB();
+    db.registros = [];
+    saveDB(db);
+    renderAdmin();
+    renderIngresar();
+    showToast('ðï¸ Datos eliminados', 'success');
+  }
+}
+
+// ========================================================
+//  UTILIDADES
+// ========================================================
+function initDataLists() {
+  const db = getDB();
+  const cats = (db.categorias || []);
+  document.getElementById('catList').innerHTML = cats.map(c=>`<option value="${esc(c)}">`).join('');
+  const prods = [...new Set(db.registros.map(r=>r.producto))];
+  document.getElementById('prodList').innerHTML = prods.map(p=>`<option value="${esc(p)}">`).join('');
+}
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmt(n) { return parseFloat(n||0).toLocaleString('es-CL',{minimumFractionDigits:0,maximumFractionDigits:2}); }
+function formatFecha(d) {
+  if (!d) return '';
+  const [y,m,dd] = d.split('-');
+  return `${dd}/${m}/${y}`;
+}
+let toastTimer;
+function showToast(msg, type='') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.className = '', 3000);
+}
+
+// Cerrar modal con ESC
+document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
+</script>
+</body>
+</html>
