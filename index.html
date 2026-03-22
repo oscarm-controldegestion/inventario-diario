@@ -373,442 +373,687 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color:
           🧹 Inventario Limpieza
           <span class="section-toggle" id="tog-limpieza">▼</span>
         </div>
-        <div class="section-body" id���K[[\Y^�H���X�H�\��H�[��]X�H���XY����������X�����[�YY���\��H�\]H���[�YY���\��H�[؜ȏ�؜�\��X�p�ۏ������XY����HYH���K[[\Y^�H�����O���X�O���]����]����KKH�X�\�X�\�KO��]��\��H��X�[ۋX���ȏ��]��\��H��X�[ۋZXY\��X�\�X�\Ȉۘ�X��H����T�X�[ۊ	ؙX�\�X�\��H���<'�i�X�\�X�\�[��\��H��X�[ۋ]���H�YH���X�X�\�X�\ȏ�����[����]���]��\��H��X�[ۋX��H�YH���KX�X�\�X�\ȏ��X�H�\��H�[��]X�H���XY����������X�����[�YY���\��H�\]H���[�YY���\��H�[؜ȏ�؜�\��X�p�ۏ������XY����HYH���KX�X�\�X�\ȏ����O���X�O���]����]����]����KKHS�ST�ԒPSKO��]��\��H�[�[�YH�[�[\�ܚX[���]��\��H�[۝[�]����]��\��H�[۝[�]�[Y�����]ۈ�\��H���[[۝�ۘ�X��H��[��S[۝
-LJH�����N�؝]ۏ��]��\��H�[۝[X�[�YH�[۝X�[���]����]ۈ�\��H���[[۝�ۘ�X��H��[��S[۝
-JH�����L�؝]ۏ���]����]ۈ�\��H�����XX��[���\�H�ۘ�X��H�^ܝ[۝�
-H��'��^ܝ\�Y\��؝]ۏ���]���]�YH�[۝ܚY���]����]����KKHS�SQRS�KO��]��\��H�[�[�YH�[�[YZ[����]��\��H��]�X�\��YH��]�YZ[����]���]��\��H�YZ[�YܚY����]��\��H�YZ[�\�X�[ۈ���]��\��H�YZ[�\�X�[ۋ]]H��'���\�p�ۈH��X����]���]��\��H�YZ[�\�X�[ۋX��H���]��\��H��ܛK\��ȏ��X�[�\��H��ܛK[X�[���Y]����X���X�[��[�]�\��H��ܛKZ[�]�YH��]�����X��H�X�Z�\�H���X��H[��X�Ȉ�[OH�X\��[�X���N�����]��[OH�\�^N��^��\����[�]�\��H��ܛKZ[�]�YH��]���[�YY�X�Z�\�H�[�YY��[OH��^�H����[X��\��H��ܛKZ[�]�ܛK\�[X��YH��]����]��[OH��^�H����[ۈ�[YOH����[�H�����[�O��[ۏ���[ۈ�[YOH�[\Y^�H��[\Y^�O��[ۏ���[ۈ�[YOH��X�\�X�\ȏ��X�\�X�\���[ۏ����[X����]����]ۈ�\��H�����\�[X\�H��\�H��[OH�X\��[�]����Y�L	H�ۘ�X��H�Y��X�
+        <div class="section-body" id="body-limpieza">
+          <table class="inv-table">
+            <thead><tr><th>#</th><th>Producto</th><th>Unidad</th><th class="th-qty">Cantidad</th><th class="th-obs">Observación</th></tr></thead>
+            <tbody id="tbody-limpieza"></tbody>
+          </table>
+        </div>
+      </div>
 
-H����HYܙY�\�؝]ۏ���]���]��\��H��ܛK[X�[��[OH�X\��[�X���N����\�HX�X[
-�[�YH�����[�����[��O�]���]��\��H���[\��YH���\����]����]����]����]��\��H�YZ[�\�X�[ۈ���]��\��H�YZ[�\�X�[ۋ]]H��'�$�۝�\�p�X\��]���]��\��H�YZ[�\�X�[ۋX��H���]��\��H��ܛK\��ȏ��X�[�\��H��ܛK[X�[��\�X\�[��X�[���[X��\��H��ܛKZ[�]�ܛK\�[X��YH�\��\�\�����[ۈ�[YOH�YZ[���YZ[���[ۏ���[ۈ�[YOH��Z�H���Z�O��[ۏ����[X����]���]��\��H��ܛK\��ȏ��X�[�\��H��ܛK[X�[���Y]�H�۝�\�p�XO�X�[��[�]�\��H��ܛKZ[�]�\OH�\���ܙ�YH��]�\�ȈX�Z�\�H�p�[�[[�
-�\�X�\�\ȏ���]����]ۈ�\��H�����\�[X\�H��\�H��[OH��Y�L	H�ۘ�X��H��[��T\���ܙ
+      <!-- Bebestibles -->
+      <div class="section-block">
+        <div class="section-header bebestibles" onclick="toggleSection('bebestibles')">
+          🥤 Bebestibles
+          <span class="section-toggle" id="tog-bebestibles">▼</span>
+        </div>
+        <div class="section-body" id="body-bebestibles">
+          <table class="inv-table">
+            <thead><tr><th>#</th><th>Producto</th><th>Unidad</th><th class="th-qty">Cantidad</th><th class="th-obs">Observación</th></tr></thead>
+            <tbody id="tbody-bebestibles"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-H��'䯈�X\�\��۝�\�p�XO؝]ۏ���]����]����]��\��H�YZ[�\�X�[ۈ���]��\��H�YZ[�\�X�[ۋ]]H��'䯈�X��\H]���]���]��\��H�YZ[�\�X�[ۋX��H��[OH�\�^N��^ٛ^Y\�X�[ێ���[[���\�����]ۈ�\��H�����[�][�H��[OH��Y�L	Nڝ\�Y�KX�۝[���[�\��ۘ�X��H�^ܝ��ӊ
-H���!��#�^ܝ\��X��\
-��ӊO؝]ۏ���]ۈ�\��H�����[�][�H��[OH��Y�L	Nڝ\�Y�KX�۝[���[�\��ۘ�X��H���[Y[���][[Y[��RY
-	�[\ܝ�[I�K��X��
-H���!��#�[\ܝ\��X��\
-��ӊO؝]ۏ��[�]\OH��[H�YH�[\ܝ�[H�X��\H����ۈ��[OH�\�^N��ۙH�ۘ�[��OH�[\ܝ��ӊ]�[�
-H����]ۈ�\��H�����Y[��\���[OH��Y�L	Nڝ\�Y�KX�۝[���[�\��ۘ�X��H��X\�[]J
-H��'��H[\X\�������Y�\����؝]ۏ���]����]����]��\��H�YZ[�\�X�[ۈ���]��\��H�YZ[�\�X�[ۋ]]H���.{�#��\�[Y[��[�\�[�]���]��\��H�YZ[�\�X�[ۋX��H�YH�YZ[��\�[Y[����]����]�����]����]�����]����]����KKH�U�H�T�KO��]��\��H��]�KX�\��YH��]�P�\���[OH�\�^N��ۙH���]��\��H��]�KX�\�Z[��ȏ���ۙ�YH��]�P�\��X�H�����ۙω�����ɛ�����[�YH��]�P�\���[�����[���]���]��\��H�؜�Y�[�\�[]ܘ\���[�]YH�؜��[�\�[�X�Z�\�H�؜�\��X�[ۙ\��[�\�[\�[0�Xx�)��ς��]���]��\��H��]�KX�\�X��ȏ���]ۈ�\��H�����\�X��\�Ȉۘ�X��H��]�Q^Q]J
-H��'䯈�X\�\�؝]ۏ���]����]����]��\��H��\��YH��\����]�����ܚ\����8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d�����P����T�B���8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d��ۜ����АT�HH�Y���I��]�����[�I���X��N���Z�HH\H�[Z[X\��[�YY���Z�I�K��Y������]�����[�I���X��N���Z�HHYYXH\I�[�YY���Z�I�K��Y������]�����[�I���X��N��\[[�Yܘ\�H\\��[�YY��\]Y]I�K��Y���
-	��]�����[�I���X��N��[��\�H��\�Y��[�YY��[��K��Y���
-I��]�����[�I���X��N��Z���[�YY�����K��Y���
-���]�����[�I���X��N�֘[�ZܚXH
-���\��ۙ�[Y\�I�[�YY�Л��I�K��Y���
-���]�����[�I���X��N��\H[����H
-�
-H��I�[�YY�Л��I�K��Y���	��]�����[�I���X��N���X�Y\����[�YY��\]Y]I�K��Y���I��]�����[�I���X��N��X�Z]H\��މ�[�YY��	�K��Y���L	��]�����[�I���X��N����XH
-�Y0�ۈ
-H
-I�[�YY�КY0�ۉ�K��Y���LI��]�����[�I���X��N��X�Z]H��p�\�
-�Y0�ۈL
-I�[�YY�КY0�ۉ�K��Y���L���]�����[�I���X��N��[��^�I�[�YY��[��K��Y���L���]�����[�I���X��N��X^[ۙ\�I�[�YY��[��K��Y���M	��]�����[�I���X��N���[[����[�YY�����K��Y���MI��]�����[�I���X��N���]�\	�[�YY��[��K��Y���M���]�����[�I���X��N�А�I�[�YY��[��K��Y���M���]�����[�I���X��N��[��\�H��X�[ۙ\��L�	�[�YY��[��K��Y���N	��]�����[�I���X��N�Л��\�ܘ�[ۙ\��X�I�[�YY�Л��I�K��Y���NI��]�����[�I���X��N�Л��\�ܘ�[ۙ\�ܘ[�\��[�YY�Л��I�K��Y��̌	��]�����[�I���X��N�Л��\��[Z\�]Hܘ[�I�[�YY�Л��I�K��Y��̌I��]�����[�I���X��N�Л��H�[Z\�]H�X�I�[�YY�Л��I�K��Y��̌���]�����[�I���X��N�Л��HH�\�\�I�[�YY�Л��I�K��Y��̌���]�����[�I���X��N������Y؛��[�YY�����K��Y��̍	��]�����[�I���X��N���[�[�I�[�YY�����K��Y��̍I��]�����[�I���X��N���[\��[\�I�[�YY�����K��Y��̍���]�����[�I���X��N���\��^�I�[�YY��[��K��Y��̍���]�����[�I���X��N���\�H�[�I�[�YY��[��K��Y��̎	��]�����[�I���X��N��\��މ�[�YY�����K��Y��̎I��]�����[�I���X��N����ܝY��[�YY�����K��Y����	��]�����[�I���X��N��\�\�H���[\�ܝY��[�YY�����K��Y����I��]�����[�I���X��N���X���H\I�[�YY��[��K��Y��I��]��[\Y^�I���X��N��[�Yܘ\�I�[�YY��[��K��Y�����]��[\Y^�I���X��N��[\X\\����[�YY��[��K��Y�����]��[\Y^�I���X��N���ܛ��[	�[�YY��[��K��Y��
-	��]��[\Y^�I���X��N���ܛ�\���[�YY��[��K��Y��
-I��]��[\Y^�I���X��N��\�ۚ�I�[�YY��[��K��Y��
-���]��[\Y^�I���X��N��[\XH�Y�[���[�YY��[��K��Y��
-���]��[\Y^�I���X��N��p�[�[X\�[��[�YY��[��K��Y��	��]��[\Y^�I���X��N�Л��HH�\�\�H�X�I�[�YY��\]Y]I�K��Y��I��]��[\Y^�I���X��N�Л��HH�\�\�Hܘ[�I�[�YY��\]Y]I�K��Y��L	��]��[\Y^�I���X��N���X[�\�[\Y^�H
-[X\�[��I�[�YY��\��K��Y��LI��]��[\Y^�I���X��N���X[�\�\�X�X�\�
-�Z�\�I�[�YY���Z�I�K��Y��L���]��[\Y^�I���X��N��]�[ޘI�[�YY��[��K��Y��L���]��[\Y^�I���X��N��[�\���XYI�[�YY��\]Y]I�K��Y��M	��]��[\Y^�I���X��N�՚\�][H��[Z[\��[�YY��[��K��Y��MI��]��[\Y^�I���X��N�ҘX��ۈ0�\]ZY��[�YY��[��K��Y��M���]��[\Y^�I���X��N���ۙ�ܝ�[X���[�YY��[��K��Y��M���]��[\Y^�I���X��N���ٚXH[��[�YY��[��K��Y��N	��]��[\Y^�I���X��N��\[[[Z[�[��[�YY��[��K��Y��NI��]��[\Y^�I���X��N��[\�H�[I�[�YY��[��K��Y���	��]��[\Y^�I���X��N��Z��I�[�YY�����K��Y���I��]��[\Y^�I���X��N�ӛݘHܘ[�H\�[��Y܉�[�YY��[��K��Y�،I��]�ؙX�\�X�\����X��N�К[�K�H	�[�YY��[��K��Y�،���]�ؙX�\�X�\����X��N�К[��	�[�YY��[��K��Y�،���]�ؙX�\�X�\����X��N�К[�]H�L���[�YY��[��K��Y�،
-	��]�ؙX�\�X�\����X��N���[�YH�H�[��\�[HK�H	�[�YY��[��K��Y�،
-I��]�ؙX�\�X�\����X��N�����KP��HܚY�[�[K�H	�[�YY��[��K��Y�،
-���]�ؙX�\�X�\����X��N�����KP��HܚY�[�[�	�[�YY��[��K��Y�،
-���]�ؙX�\�X�\����X��N�����KP��HܚY�[�[
-NLH���[�YY��[��K��Y�،	��]�ؙX�\�X�\����X��N�����KP��HܚY�[�[]H�L���[�YY��[��K��Y�،I��]�ؙX�\�X�\����X��N�����KP��H�\��K�H	�[�YY��[��K��Y�،L	��]�ؙX�\�X�\����X��N�����KP��H�\��
-NLH���[�YY��[��K��Y�،LI��]�ؙX�\�X�\����X��N�����KP��H�\��]H�L���[�YY��[��K��Y�،L���]�ؙX�\�X�\����X��N��[�\���]X�H�Y�[�L[	�[�YY��[��K��Y�،L���]�ؙX�\�X�\����X��N�ј[�H�\�[��HK�H	�[�YY��[��K��Y�،M	��]�ؙX�\�X�\����X��N�ј[�H�\�[��H
-NLH���[�YY��[��K��Y�،MI��]�ؙX�\�X�\����X��N�ј[�H�\�[��H�\���L���[�YY��[��K��Y�،M���]�ؙX�\�X�\����X��N�ј[�H�\��K�H	�[�YY��[��K��Y�،M���]�ؙX�\�X�\����X��N�ј[�H]H�L���[�YY��[��K��Y�،N	��]�ؙX�\�X�\����X��N���[��\�[H]H�L���[�YY��[��K��Y�،NI��]�ؙX�\�X�\����X��N���[Hp�XHK�H	�[�YY��[��K��Y�،�	��]�ؙX�\�X�\����X��N���[Hp�XH�	�[�YY��[��K��Y�،�I��]�ؙX�\�X�\����X��N���[Hp�XH]H�L���[�YY��[��K��Y�،����]�ؙX�\�X�\����X��N��[p�ۈ��HK�H	�[�YY��[��K��Y�،����]�ؙX�\�X�\����X��N��[p�ۈ��H�L���[�YY��[��K��Y�،�	��]�ؙX�\�X�\����X��N��PT��X�܈\�HK��	�[�YY��[��K��Y�،�I��]�ؙX�\�X�\����X��N�Ӱ�X�\�\�^����SQV]H��H[	�[�YY��[��K��Y�،����]�ؙX�\�X�\����X��N�Ӱ�X�\���[H\�^����Z�HNL[	�[�YY��[��K��Y�،����]�ؙX�\�X�\����X��N�Ӱ�X�\���[H�\�[��H�Z�HNL[	�[�YY��[��K��Y�،�	��]�ؙX�\�X�\����X��N�Ӱ�X�\�X[����SQV]H��H[	�[�YY��[��K��Y�،�I��]�ؙX�\�X�\����X��N�Ӱ�X�\�p�XH�SQV]H��H[	�[�YY��[��K��Y�،�	��]�ؙX�\�X�\����X��N�Ӱ�X�\��]��\�[��HK�H	�[�YY��[��K��Y�،�I��]�ؙX�\�X�\����X��N�Ӱ�X�\��]�p�XHK�H	�[�YY��[��K��Y�،̉��]�ؙX�\�X�\����X��N��\K�H	�[�YY��[��K��Y�،����]�ؙX�\�X�\����X��N��\�	�[�YY��[��K��Y�،�	��]�ؙX�\�X�\����X��N��\
-NLH���[�YY��[��K��Y�،�I��]�ؙX�\�X�\����X��N��\]H�L���[�YY��[��K��Y�،͉��]�ؙX�\�X�\����X��N��\�HK�H	�[�YY��[��K��Y�،����]�ؙX�\�X�\����X��N��\�H�	�[�YY��[��K��Y�،�	��]�ؙX�\�X�\����X��N��\�H
-NLH���[�YY��[��K��Y�،�I��]�ؙX�\�X�\����X��N��\�H]H�L���[�YY��[��K��Y�؍	��]�ؙX�\�X�\����X��N����]HK�H	�[�YY��[��K��Y�؍I��]�ؙX�\�X�\����X��N����]H�	�[�YY��[��K��Y�؍���]�ؙX�\�X�\����X��N����]H
-NLH���[�YY��[��K��Y�؍���]�ؙX�\�X�\����X��N����]H]H�L���[�YY��[��K��Y�؍
-	��]�ؙX�\�X�\����X��N����]H�\��K�H	�[�YY��[��K��Y�؍
-I��]�ؙX�\�X�\����X��N����]H�\��]H�L���[�YY��[��K��Y�؍
-���]�ؙX�\�X�\����X��N�՘\��0�\�X���[�YY��\]Y]I�K��Y�؍
-���]�ؙX�\�X�\����X��N�՚][Y�XH�ۈ�\�K��	�[�YY��[��K��Y�؍	��]�ؙX�\�X�\����X��N�՚][�[��\�K��	�[�YY��[��K��Y�؍I��]�ؙX�\�X�\����X��N�՚][�[��\�
-����[�YY��[��K��Y�؍L	��]�ؙX�\�X�\����X��N�՚][�ۈ�\�
-����[�YY��[��K��Y�؍LI��]�ؙX�\�X�\����X��N�����KP��H�	�[�YY��[��K�N���8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d���UP�T�B���8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d��[��[ۈ�]�
-^�^�ۜ�R��Ӌ�\��J��[�ܘY�K��]][J	�[���݌��_	۝[	�NY�
-H�]\��X�]�
-J^�B��]\�����X��Ζˋ�����АT�WK�Y�\���Ζ�K\���ܙΞ�YZ[���YZ[�L����Z�N���Z�LL���_NB��[��[ۈ�]�Q��^���[�ܘY�K��]][J	�[���݌����Ӌ���[��Y�J�JN�B��[��[ۈ�]���
-^��]\���]�
-K���X���ˋ�����АT�WN�B����8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d���UU���8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d�]�\�\�\�[�[�\���O[�[��[��[ۈ���[�
-^�ۜ�OY��[Y[���][[Y[��RY
-	���[�\�\��K��[YK��[J
-K����\��\�J
-N�ۜ�Y��[Y[���][[Y[��RY
-	���[�\���K��[YN�ۜ��Y�]�
-NY�OOOI�YZ[�ɉ�OOY��\���ܙ˘YZ[�^��\��\��[ۊ	�YZ[�\��Y܉�	�YZ[��Nܙ]\���B�Y�OOOI��Z�Iɉ�OOY��\���ܙ˘�Z�J^��\��\��[ۊ	��Z�I�	��Z�I�Nܙ]\���B���[Y[���][[Y[��RY
-	���[�\���K�^�۝[�I���;�#�\�X\�[���۝�\�p�XH[��ܜ�X����B��[��[ۈ]ZX����[���J^Y���OOOI�YZ[��H�\��\��[ۊ	�YZ[�\��Y܉�	�YZ[��N[�H�\��\��[ۊ	��Z�I�	��Z�I�NB��[��[ۈ�\��\��[ۊ�[YK��J^�\�\�\�[�[YN��\���O\��N��[Y[���][[Y[��RY
-	���[�\���K�^�۝[�I����[Y[���][[Y[��RY
-	���[��ܙY[��K��[K�\�^OIۛۙI���[Y[���][[Y[��RY
-	�\�ܙY[��K��[K�\�^OIٛ^	���[Y[���][[Y[��RY
-	���\�\�\��K�^�۝[�[�[YN��[Y[���][[Y[��RY
-	���\���I�K�^�۝[�\��OOOI�YZ[����YZ[�Ή��Z�I���[Y[���][[Y[��RY
-	�X�YZ[��K��[K�\�^O\��OOOI�YZ[����ΉۛۙI��ۜ��^O[�]�]J
-K��T����[��
-K��X�JL
-N�ۜ��OY��[Y[���][[Y[��RY
-	ٙX�QXI�N�K��[YO]�^NY���HOOI�YZ[��^��K�X^]�^N��K�Z[�]�^N�H[�H��K��[[ݙP]�X�]J	�X^	�N��K��[[ݙP]�X�]J	�Z[��N�B��[�\�X�J
-N�Y^Q]J
-N��[Y[���][[Y[��RY
-	��]�P�\��K��[K�\�^OIٛ^	�\�YX\�[�]�]J
-K��]�[YX\�
-N�\�[۝[�]�]J
-K��][۝
+    <!-- PANEL HISTORIAL -->
+    <div class="panel" id="panelHistorial">
+      <div class="month-nav">
+        <div class="month-nav-left">
+          <button class="btn-month" onclick="changeMonth(-1)">&#8249;</button>
+          <div class="month-label" id="monthLabel"></div>
+          <button class="btn-month" onclick="changeMonth(1)">&#8250;</button>
+        </div>
+        <button class="btn btn-accent btn-sm" onclick="exportMonthPDF()">📄 Exportar Mes PDF</button>
+      </div>
+      <div id="monthGrid"></div>
+    </div>
 
-NB��[��[ۈ���]
+    <!-- PANEL ADMIN -->
+    <div class="panel" id="panelAdmin">
+      <div class="stats-bar" id="statsAdmin"></div>
+      <div class="admin-grid">
 
-^�\�\�\�[�[��\���O[�[��[Y[���][[Y[��RY
-	���[��ܙY[��K��[K�\�^OIٛ^	���[Y[���][[Y[��RY
-	�\�ܙY[��K��[K�\�^OIۛۙI���[Y[���][[Y[��RY
-	��]�P�\��K��[K�\�^OIۛۙI���[Y[���][[Y[��RY
-	���[�\�\��K��[YOI����[Y[���][[Y[��RY
-	���[�\���K��[YOI����]�X�	�[�ܙ\�\��NB���[Y[���][[Y[��RY
-	���[�\�\��K�Y]�[�\�[�\�	��^Y�ۉ�OO��Y�K��^OOOI�[�\��Y��[Y[���][[Y[��RY
-	���[�\���K����\�
-N�JN��[Y[���][[Y[��RY
-	���[�\���K�Y]�[�\�[�\�	��^Y�ۉ�OO��Y�K��^OOOI�[�\��Y���[�
-N�JN���8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d���P���8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d��[��[ۈ��]�X�X�^��[Y[��]Y\�T�[X�ܐ[
-	˝X��K��ܑXX�
-O���\��\�����J	�X�]�I��]\�]�X�OO]X�JN��[Y[��]Y\�T�[X�ܐ[
-	˜[�[	�K��ܑXX�
-O���\��\���[[ݙJ	�X�]�I�JN��[Y[���][[Y[��RY
-	�[�[	��X��K��\\��\�J
-J�X���X�JJJK��\��\��Y
-	�X�]�I�N��[Y[���][[Y[��RY
-	��]�P�\��K��[K�\�^O]X�OOI�[�ܙ\�\���ٛ^	ΉۛۙI�Y�X�OOI�\�ܚX[	�H�[�\�\�ܚX[
+        <div class="admin-section">
+          <div class="admin-section-title">📦 Gestión de Productos</div>
+          <div class="admin-section-body">
+            <div class="form-row">
+              <label class="form-label">Nuevo producto</label>
+              <input class="form-input" id="newProdNombre" placeholder="Nombre del producto" style="margin-bottom:6px">
+              <div style="display:flex;gap:8px">
+                <input class="form-input" id="newProdUnidad" placeholder="Unidad" style="flex:1">
+                <select class="form-input form-select" id="newProdCat" style="flex:1">
+                  <option value="cocina">Cocina</option>
+                  <option value="limpieza">Limpieza</option>
+                  <option value="bebestibles">Bebestibles</option>
+                </select>
+              </div>
+              <button class="btn btn-primary btn-sm" style="margin-top:8px;width:100%" onclick="addProduct()">➕ Agregar</button>
+            </div>
+            <div class="form-label" style="margin-bottom:6px">Lista actual (<span id="prodCount"></span>)</div>
+            <div class="prod-list" id="prodList"></div>
+          </div>
+        </div>
 
-NY�X�OOI�YZ[��H�[�\�YZ[�
-NB����8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d����S�T�P�B���8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d��[��[ۈ�[�\�X�J
-^�ۜ����Y�]���
-N�����[�I�	�[\Y^�I�	ؙX�\�X�\��K��ܑXX�
-�]O��ۜ��Y��[Y[���][[Y[��RY
-	���KI���]
-N�ۜ�\�\��˙�[\�O���]OOX�]
-N��[��\�S[\��X\
+        <div class="admin-section">
+          <div class="admin-section-title">🔐 Contraseñas</div>
+          <div class="admin-section-body">
+            <div class="form-row">
+              <label class="form-label">Usuario</label>
+              <select class="form-input form-select" id="passUser">
+                <option value="admin">Admin</option>
+                <option value="caja">Caja</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label class="form-label">Nueva contraseña</label>
+              <input class="form-input" type="password" id="newPass" placeholder="Mínimo 4 caracteres">
+            </div>
+            <button class="btn btn-primary btn-sm" style="width:100%" onclick="changePassword()">💾 Guardar Contraseña</button>
+          </div>
+        </div>
 
-JOO������\��H�[�[H���J�_O����\��H�\�����\�����X��J_O����\��H�][�]���\���[�YY
-_O����\��H�\]H��[�]\OH��[X�\��Z[�H���\H��H��\��H�]KZ[�]�YH�]KI��YH�]KZYH���YH�X�Z�\�H��%�ۚ[�]H�۔]J\�H������\��H�[؜ȏ�[�]\OH�^��\��H�؜�Z[�]�YH�؜�I��YH�X�Z�\�H��X^[��H���������
-K���[�	��NJN\]T�]�
-NB���[��[ۈ۔]J[
-^[��\��\�����J	ٚ[Y	�[��[YHOOI�ɉ�\��Q��]
-[��[YJO�L
-N\]T�]�P�\�
-NB���[��[ۈ\]T�]�P�\�
-^�ۜ��X�OY��[Y[���][[Y[��RY
-	ٙX�QXI�K��[YN�ۜ��Y��[Y[��]Y\�T�[X�ܐ[
-	˜]KZ[�]��[Y	�K�[����[Y[���][[Y[��RY
-	��]�P�\��X�I�K�^�۝[�Y�ܛX]�X�J�X�JN��[Y[���][[Y[��RY
-	��]�P�\���[�	�K�^�۝[�[�����X�����OOLO���Ή��J�����
+        <div class="admin-section">
+          <div class="admin-section-title">💾 Backup de Datos</div>
+          <div class="admin-section-body" style="display:flex;flex-direction:column;gap:8px">
+            <button class="btn btn-outline" style="width:100%;justify-content:center" onclick="exportJSON()">⬇️ Exportar backup (JSON)</button>
+            <button class="btn btn-outline" style="width:100%;justify-content:center" onclick="document.getElementById('importFile').click()">⬆️ Importar backup (JSON)</button>
+            <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
+            <button class="btn btn-danger" style="width:100%;justify-content:center" onclick="clearAllData()">🗑 Limpiar todos los registros</button>
+          </div>
+        </div>
 
-N��[Y[���][[Y[��RY
-	ۙ]�����X��I�K��[YOI����[Y[���][[Y[��RY
-	ۙ]���[�YY	�K��[YOI������\�
-	��!H��X��YܙY�Y��	��X��\���NB��[��[ۈ�[[ݙT��X�
-Y
-^Y�X�ۙ�\�J	��[[Z[�\�\�H��X����JH�]\���ۜ��Y�]�
-N����X���J����X���ˋ�����АT�WJK��[\�O��YOOZY
-N�]�Q��N�[�\�X�J
-N��Y^Q]J
-N��[�\���\�
+        <div class="admin-section">
+          <div class="admin-section-title">ℹ️ Resumen General</div>
+          <div class="admin-section-body" id="adminResumen"></div>
+        </div>
 
-N����\�
-	�'��H��X��[[Z[�Y��	��\���NB��[��[ۈ�[�\�YZ[��\�[Y[�
-^�ۜ��Y�]�
-N�ۜ��Y���Y�\�����N��[Y[���][[Y[��RY
-	��]�YZ[��K�[��\�SX�]��\��H��]X�\���]��\��H��][X�[��0�X\��Y�\��Y���]��]��\��H��]]�[YH��܋�[��O�]���]���]��\��H��]X�\�ܙY[���]��\��H��][X�[����X���[�\�O�]��]��\��H��]]�[YHܙY[�����]���
-K�[��O�]���]���]��\��H��]X�\�ܘ[��H��]��\��H��][X�[���[[��Y�\����]��]��\��H��]]�[YHܘ[��H��[OH��۝\�^�N�M��܋�[��ٛܛX]�X�J��K��X�JN���%	�O�]���]����[Y[���][[Y[��RY
-	�YZ[��\�[Y[��K�[��\�SX�]��[OH�\�^N��^ٛ^Y\�X�[ێ���[[���\��ٛ۝\�^�N�L�ȏ��]��[OH�\�^N��^ڝ\�Y�KX�۝[���X�KX�]�Y[��Y[�΍�؛ܙ\�X���N�\��Y�Y���ȏ��[��[OH���܎�͘��N���[�Y�\������[����ۙω܋�[��O���ۙϏ�]���]��[OH�\�^N��^ڝ\�Y�KX�۝[���X�KX�]�Y[��Y[�΍�؛ܙ\�X���N�\��Y�Y���ȏ��[��[OH���܎�͘��N�����[�O��[����ۙω��]���
-K��[\�O���]OOI����[�I�K�[��H��X������ۙϏ�]���]��[OH�\�^N��^ڝ\�Y�KX�۝[���X�KX�]�Y[��Y[�΍�؛ܙ\�X���N�\��Y�Y���ȏ��[��[OH���܎�͘��N��[\Y^�O��[����ۙω��]���
-K��[\�O���]OOI�[\Y^�I�K�[��H��X������ۙϏ�]���]��[OH�\�^N��^ڝ\�Y�KX�۝[���X�KX�]�Y[��Y[�΍����[��[OH���܎�͘��N���X�\�X�\���[����ۙω��]���
-K��[\�O���]OOIؙX�\�X�\��K�[��H��X������ۙϏ�]����]��B��[��[ۈ�[��T\���ܙ
+      </div>
+    </div>
 
-^�ۜ�\�\�Y��[Y[���][[Y[��RY
-	�\��\�\��K��[YN�ۜ�\��Y��[Y[���][[Y[��RY
-	ۙ]�\���K��[YNY�\\��\�˛[��
+  </div>
+</div>
 
-^�����\�
-	���;�#��۝�\�p�XHp�[�[[�
-�\�X�\�\��	��\���Nܙ]\���B��ۜ��Y�]�
-N��\���ܙ�Y��\���ܙ��YZ[���YZ[�L����Z�N���Z�LL���N��\���ܙ��\�\�O\\���]�Q��N��[Y[���][[Y[��RY
-	ۙ]�\���K��[YOI������\�
-	��!H�۝�\�p�XHX�X[^�YH\�H	��\�\�	��X��\���NB��[��[ۈ�X\�[]J
-^Y�X�ۙ�\�J	���;�#�0��[[Z[�\�������Y�\�����\�HX��p�ۈ���HYYH\�X�\���JH�]\���ۜ��Y�]�
-N����Y�\����V�N��]�Q��N�[�\�YZ[�
-N�����\�
-	�'��H�Y�\����[[Z[�Y���	��\���NB��[��[ۈ^ܝ��ӊ
-^�ۜ��؏[�]��؊Ҕ�Ӌ���[��Y�J�]�
-K�[�WK�\N��\X�][ۋڜ�ۉ�JN�ۜ�OY��[Y[��ܙX]Q[[Y[�
-	�I�NK��Y�UT��ܙX]Sؚ�X�T�
-�؊NK��ۛ�YI�[��[�\�[�ؘX��\��ۙ]�]J
-K��T����[��
-K��X�JL
-J�˚��ۉ�K��X��
-N�����\�
-	��!H�X��\^ܝY��	��X��\���NB��[��[ۈ[\ܝ��ӊJ^�ۜ��[OYK�\��]��[\��N�Y�Y�[JH�]\���ۜ��[�]��[T�XY\�
-N��ۛ�YY]�O��^�ۜ�R��Ӌ�\��J]��\��]��\�[
-NY�Y��Y�\����H����]�\��܊
-NY��ۙ�\�J0��[\ܝ\�	���Y�\���˛[��H�Y�\�����\���Y[\^�\��H��]��X�X[\˘
-J^�]�Q�
-N��[�\�X�J
-N��Y^Q]J
-N��[�\�YZ[�
-N����\�
-	��!H]��[\ܝY���	��X��\���NB�X�]������\�
-	��c\��]����ӈ[���[Y��	�\��܉�N�B�N���XY\�^
-�[JN�K�\��]��[YOI��B����8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d�������8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d��[��[ۈ�Z[^T��X�J^�ۜ�ڜ��O]�[��˚����ۜ���[�]�����ܚY[�][ێ��ܝ�Z]	�[�]��[I��ܛX]��M	�JN�ۜ����Y�]���
-N�ۜ��Y�]�
-N�ۜ��Y�Y���Y�\���˙�[�
-�O����X�OOOY�X�JN�ۜ��[�]�]J�X�J��L��	�K����[Q]T��[��	�\�P�	���YZ�^N��ۙ��YX\��۝[Y\�X��[۝��ۙ��^N�۝[Y\�X��JN��XY\���˜�]�[��܊��
-NL�N�˜�X�
-�L��	щ�N�˜�]^��܊�MK�MK�MJN�˜�]�۝�^�JMJN��˜�]�۝
-[�Y�[�Y	؛�	�N�˝^
-	�S��S�T�S�PT�S�8�%�P�����MLJN�˜�]�۝�^�JJN��˜�]�۝
-[�Y�[�Y	ۛܛX[	�N�˝^
-���\�]
-
-K��\\��\�J
-J����X�JJKMNJN�˝^
-	��[�\�YΈ	�ۙ]�]J
-K����[T��[��	�\�P�	�KMNJN]OL̎�ۜ��]�V���^N�����[�I�X�[��S��S�T�S����S�I����̍�
-NL�_K��^N��[\Y^�I�X�[��S��S�T�S�STQV�I����̍�L�
-�_K��^N�ؙX�\�X�\��X�[�БP�T�P�T������L��
-�K��_WN�]˙�ܑXX�
-�O��ۜ�\�\��˙�[\�O���]OOX˚�^JNY�[\��[��
-H�]\���˜�]�[��܊���˘��
-N�˜�X�
-MKMN�	щ�N�˜�]^��܊�MK�MK�MJN��˜�]�۝�^�JL
-N��˜�]�۝
-[�Y�[�Y	؛�	�N�˝^
-˛X�[M�J�JNJ�M��ۜ�����[\��X\
+<!-- SAVE BAR -->
+<div class="save-bar" id="saveBar" style="display:none">
+  <div class="save-bar-info"><strong id="saveBarFecha"></strong>&nbsp;·&nbsp;<span id="saveBarCount"></span></div>
+  <div class="obs-general-wrap">
+    <input id="obsGeneral" placeholder="Observaciones generales del día…" />
+  </div>
+  <div class="save-bar-btns">
+    <button class="btn btn-success" onclick="saveDayData()">💾 Guardar</button>
+  </div>
+</div>
 
-JOO�]]OI��؜�I��Y��Y�^��ۜ�]\�Y˚][\˙�[�
-O��YOO\�Y
-N�Y�]
-^�]OZ]��[�YYOO[�[���[��]��[�YY
-N����؜�Z]�؜�	���_B��]\���J�K���X��K�[�YY]K؜�NJN�˘]]�X�J�\�N�K�XY������	���X���	�[�YY	�	��[�YY	�	�؜�\��X�p�ۉ�WK���N������[YN��ܚY	���[\Ξٛ۝�^�N��[Y[�ΌK�_K�XY�[\Ξٚ[��܎�̍�
-�K^��܎�͌LK�۝�[N�؛�	��۝�^�N�K���[[��[\Ξ����[�Y�[Yێ���[�\��KN���[�Y��K����[�Y��KΞ��[�Y���[Yێ���[�\��K
-���[�Y�L_K�X\��[���Y��M�Y��MK�JNOY�˛\�]]�X�K��[�[J�NJNY��Yɉ��Y˛؜��[�\�[
-^�˜�]�[��܊�
-K�
-K�
-JN��˜�X�
-MKL�N�L	щ�N�˜�]�۝�^�J
-N��˜�]�۝
-[�Y�[�Y	؛�	�N��˜�]^��܊
-L
-L
-L
-N�˝^
-	�Д�T��P�SӑTΈ	�M�J̊N�˜�]�۝
-[�Y�[�Y	ۛܛX[	�N��˝^
-�Y˛؜��[�\�[
-MKJ̊NB��˜�]�۝�^�J
-�N��˜�]^��܊M�M�M�
-N�˝^
-	ԚX����0���۝��H[��[�\�[�0��	�ۙ]�]J
-K����[Q]T��[��	�\�P�	�KM�˚[�\��[�Y�T�^�K�ZY�M�N�]\����B���[��[ۈ^ܝ�
-^�ۜ��X�OY��[Y[���][[Y[��RY
-	ٙX�QXI�K��[YNY�Y�X�J^�����\�
-	���;�#��[X��[ۘH[�H�X�I�	��\���Nܙ]\���B��Z[^T��X�JK��]�J	�[��[�\�[���ٙX�J�˜��N����\�
-	�'����[�\�Y��	��X��\���NB��[��[ۈ^ܝ^T��X�J^�Z[^T��X�JK��]�J	�[��[�\�[���ٙX�J�˜��N����\�
-	�'����[�\�Y��	��X��\���NB���[��[ۈ^ܝ[۝�
-^�ۜ��Y�]�
-N�ۜ��Y�^Z\�YX\���I����[��\�[۝
-�JK�Y�\�
-�	�	�N�ۜ��Y��Y���Y�\���˙�[\��O����X�K��\���]
-�Y�^
-JK��ܝ
+<div class="toast" id="toast"></div>
 
-K�OO�K��X�K���[P��\\�J���X�JJNY�\�Y�˛[��
-^�����\�
-	���;�#��[��Y�\����[�\�HY\��	��\���Nܙ]\���B��ۜ�ڜ��O]�[��˚����ۜ���[�]�����ܚY[�][ێ��[���\I�[�]��[I��ܛX]��M	�JN�ۜ����Y�]���
-N�˜�]�[��܊��
-NL�N��˜�X�
-�M��	щ�N�˜�]^��܊�MK�MK�MJN��˜�]�۝�^�JM
-N��˜�]�۝
-[�Y�[�Y	؛�	�N�˝^
-	ԑT�SQS�QS��PS8�%�P�����ML
-N�˜�]�۝�^�JL
-N��˜�]�۝
-[�Y�[�Y	ۛܛX[	�N�˝^
-Sӕ��\�[۝J��	��\�YX\���0��	�ܙY�˛[��
-��0�X\��Y�\��Y���MN
-N�ۜ�^\�\�Y�˛X\
-�O����X�K��X�J
-JN�ۜ�XYV�����X���	�[�����^\�WN�ۜ���O\��˛X\
-O��ۜ����V����X��K�[�YYN�Y�˙�ܑXX�
-�Y�O���ۜ�]\�Y˚][\˙�[�
-O��YOO\�Y
-Nܛ�˜\�
-]	��]��[�YYOO[�[�]��[�YY���N�JN�]\�����JN�˘]]�X�J�\�N��XY��K[YN��ܚY	���[\Ξٛ۝�^�N���K�[Y[�Ό_K�XY�[\Ξٚ[��܎�̍�
-NL�K^��܎�̍MK�MK�MWK�۝�[N�؛�	�[Yێ���[�\���۝�^�N��K���[[��[\Ξ����[�Y�NKN���[�Y�L�[Yێ���[�\��_K�X\��[���Y��L�Y��LK�JN�˜�]�۝�^�J
-�N��˜�]^��܊M�M�M�
-N�˝^
-	ԚX����0���[�\�Y�	�ۙ]�]J
-K����[T��[��	�\�P�	�KL�˚[�\��[�Y�T�^�K�ZY�MJN�˜�]�J	�[��[�\�[��Y[��X[���\�YX\��������[��\�[۝
-�JK�Y�\�
-�	�	�J�˜��N����\�
-	�'���\�[Y[�Y[��X[��[�\�Y��	��X��\���NB����8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d���US��8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d��[��[ۈ�ܛX]�X�J
-^�Y�Y
-\�]\������ۜ��KKOY��]
-	�I�Nܙ]\��	�K��_K��_X�B��[��[ۈ\���^ܙ]\����[���	��K��\X�Jɋ��	ɘ[\��K��\X�J���	ɛ��K��\X�Jϋ��	ə���K��\X�Jȋ��	ɜ][���N�B�]�\��
+<script>
+// ═══════════════════════════════════════════════════
+//  PRODUCTOS BASE
+// ═══════════════════════════════════════════════════
+const PRODS_BASE = [
+  {id:'c01',cat:'cocina',nombre:'Caja de Papa Familiar',unidad:'Caja'},
+  {id:'c02',cat:'cocina',nombre:'Caja de Media Papa',unidad:'Caja'},
+  {id:'c03',cat:'cocina',nombre:'Papel Antigrasa Papas',unidad:'Paquete'},
+  {id:'c04',cat:'cocina',nombre:'Envase Pollo Asado',unidad:'Un'},
+  {id:'c05',cat:'cocina',nombre:'Ajo',unidad:'Kg'},
+  {id:'c06',cat:'cocina',nombre:'Zanahoria (bolsas congeladas)',unidad:'Bolsa'},
+  {id:'c07',cat:'cocina',nombre:'Papa en Bolsa (2,5 Kg)',unidad:'Bolsa'},
+  {id:'c08',cat:'cocina',nombre:'Cubiertos',unidad:'Paquete'},
+  {id:'c09',cat:'cocina',nombre:'Aceite Arroz',unidad:'Lt'},
+  {id:'c10',cat:'cocina',nombre:'Soya (Bidón 5 Lt)',unidad:'Bidón'},
+  {id:'c11',cat:'cocina',nombre:'Aceite Freír (Bidón 10 Lt)',unidad:'Bidón'},
+  {id:'c12',cat:'cocina',nombre:'Mostaza',unidad:'Un'},
+  {id:'c13',cat:'cocina',nombre:'Mayonesa',unidad:'Un'},
+  {id:'c14',cat:'cocina',nombre:'Cilantro',unidad:'Kg'},
+  {id:'c15',cat:'cocina',nombre:'Ketchup',unidad:'Un'},
+  {id:'c16',cat:'cocina',nombre:'BBQ',unidad:'Un'},
+  {id:'c17',cat:'cocina',nombre:'Envase Colaciones C-20',unidad:'Un'},
+  {id:'c18',cat:'cocina',nombre:'Bolsas Porciones Chica',unidad:'Bolsa'},
+  {id:'c19',cat:'cocina',nombre:'Bolsas Porciones Grandes',unidad:'Bolsa'},
+  {id:'c20',cat:'cocina',nombre:'Bolsas Camiseta Grande',unidad:'Bolsa'},
+  {id:'c21',cat:'cocina',nombre:'Bolsa Camiseta Chica',unidad:'Bolsa'},
+  {id:'c22',cat:'cocina',nombre:'Bolsa de Basura',unidad:'Bolsa'},
+  {id:'c23',cat:'cocina',nombre:'Polvos Adobo',unidad:'Kg'},
+  {id:'c24',cat:'cocina',nombre:'Sal Fina',unidad:'Kg'},
+  {id:'c25',cat:'cocina',nombre:'Sal Parrillera',unidad:'Kg'},
+  {id:'c26',cat:'cocina',nombre:'Cerveza',unidad:'Un'},
+  {id:'c27',cat:'cocina',nombre:'Potes de Salsa',unidad:'Un'},
+  {id:'c28',cat:'cocina',nombre:'Arroz',unidad:'Kg'},
+  {id:'c29',cat:'cocina',nombre:'Pollo Crudo',unidad:'Kg'},
+  {id:'c30',cat:'cocina',nombre:'Tiras de Costillar Crudo',unidad:'Kg'},
+  {id:'c31',cat:'cocina',nombre:'Sacos de Papa',unidad:'Un'},
+  {id:'l01',cat:'limpieza',nombre:'Antigrasa',unidad:'Un'},
+  {id:'l02',cat:'limpieza',nombre:'Limpiapisos',unidad:'Un'},
+  {id:'l03',cat:'limpieza',nombre:'Cloro Gel',unidad:'Un'},
+  {id:'l04',cat:'limpieza',nombre:'Cloro Puro',unidad:'Un'},
+  {id:'l05',cat:'limpieza',nombre:'Esponja',unidad:'Un'},
+  {id:'l06',cat:'limpieza',nombre:'Limpia Vidrios',unidad:'Un'},
+  {id:'l07',cat:'limpieza',nombre:'Paño Amarillo',unidad:'Un'},
+  {id:'l08',cat:'limpieza',nombre:'Bolsa de Basura Chica',unidad:'Paquete'},
+  {id:'l09',cat:'limpieza',nombre:'Bolsa de Basura Grande',unidad:'Paquete'},
+  {id:'l10',cat:'limpieza',nombre:'Guantes Limpieza (Amarillos)',unidad:'Par'},
+  {id:'l11',cat:'limpieza',nombre:'Guantes Desechables (Cajas)',unidad:'Caja'},
+  {id:'l12',cat:'limpieza',nombre:'Lavaloza',unidad:'Un'},
+  {id:'l13',cat:'limpieza',nombre:'Interfoliada',unidad:'Paquete'},
+  {id:'l14',cat:'limpieza',nombre:'Virutilla o Similar',unidad:'Un'},
+  {id:'l15',cat:'limpieza',nombre:'Jabón Líquido',unidad:'Un'},
+  {id:'l16',cat:'limpieza',nombre:'Confort Jumbo',unidad:'Un'},
+  {id:'l17',cat:'limpieza',nombre:'Cofia Pelo',unidad:'Un'},
+  {id:'l18',cat:'limpieza',nombre:'Papel Aluminio',unidad:'Un'},
+  {id:'l19',cat:'limpieza',nombre:'Alusa Film',unidad:'Un'},
+  {id:'l20',cat:'limpieza',nombre:'Ají',unidad:'Kg'},
+  {id:'l21',cat:'limpieza',nombre:'Nova Grande Dispensador',unidad:'Un'},
+  {id:'b01',cat:'bebestibles',nombre:'Bilz 1.5 L',unidad:'Un'},
+  {id:'b02',cat:'bebestibles',nombre:'Bilz 3 L',unidad:'Un'},
+  {id:'b03',cat:'bebestibles',nombre:'Bilz Lata 350 cc',unidad:'Un'},
+  {id:'b04',cat:'bebestibles',nombre:'Canada Dry Ginger Ale 1.5 L',unidad:'Un'},
+  {id:'b05',cat:'bebestibles',nombre:'Coca-Cola Original 1.5 L',unidad:'Un'},
+  {id:'b06',cat:'bebestibles',nombre:'Coca-Cola Original 3 L',unidad:'Un'},
+  {id:'b07',cat:'bebestibles',nombre:'Coca-Cola Original 591 cc',unidad:'Un'},
+  {id:'b08',cat:'bebestibles',nombre:'Coca-Cola Original Lata 350 cc',unidad:'Un'},
+  {id:'b09',cat:'bebestibles',nombre:'Coca-Cola Zero 1.5 L',unidad:'Un'},
+  {id:'b10',cat:'bebestibles',nombre:'Coca-Cola Zero 591 cc',unidad:'Un'},
+  {id:'b11',cat:'bebestibles',nombre:'Coca-Cola Zero Lata 350 cc',unidad:'Un'},
+  {id:'b12',cat:'bebestibles',nombre:'Energética RedBull 250 ml',unidad:'Un'},
+  {id:'b13',cat:'bebestibles',nombre:'Fanta Naranja 1.5 L',unidad:'Un'},
+  {id:'b14',cat:'bebestibles',nombre:'Fanta Naranja 591 cc',unidad:'Un'},
+  {id:'b15',cat:'bebestibles',nombre:'Fanta Naranja Zero 350 cc',unidad:'Un'},
+  {id:'b16',cat:'bebestibles',nombre:'Fanta Zero 1.5 L',unidad:'Un'},
+  {id:'b17',cat:'bebestibles',nombre:'Fanta Lata 350 cc',unidad:'Un'},
+  {id:'b18',cat:'bebestibles',nombre:'Ginger Ale Lata 350 cc',unidad:'Un'},
+  {id:'b19',cat:'bebestibles',nombre:'Kem Piña 1.5 L',unidad:'Un'},
+  {id:'b20',cat:'bebestibles',nombre:'Kem Piña 3 L',unidad:'Un'},
+  {id:'b21',cat:'bebestibles',nombre:'Kem Piña Lata 350 cc',unidad:'Un'},
+  {id:'b22',cat:'bebestibles',nombre:'Limón Soda 1.5 L',unidad:'Un'},
+  {id:'b23',cat:'bebestibles',nombre:'Limón Soda 350 cc',unidad:'Un'},
+  {id:'b24',cat:'bebestibles',nombre:'MAS Sabor Pera 1.6 L',unidad:'Un'},
+  {id:'b25',cat:'bebestibles',nombre:'Néctar Durazno JUMEX Lata 335 ml',unidad:'Un'},
+  {id:'b26',cat:'bebestibles',nombre:'Néctar Sprim Durazno caja 190 ml',unidad:'Un'},
+  {id:'b27',cat:'bebestibles',nombre:'Néctar Sprim Naranja caja 190 ml',unidad:'Un'},
+  {id:'b28',cat:'bebestibles',nombre:'Néctar Mango JUMEX Lata 335 ml',unidad:'Un'},
+  {id:'b29',cat:'bebestibles',nombre:'Néctar Piña JUMEX Lata 335 ml',unidad:'Un'},
+  {id:'b30',cat:'bebestibles',nombre:'Néctar Watts Naranja 1.5 L',unidad:'Un'},
+  {id:'b31',cat:'bebestibles',nombre:'Néctar Watts Piña 1.5 L',unidad:'Un'},
+  {id:'b32',cat:'bebestibles',nombre:'Pap 1.5 L',unidad:'Un'},
+  {id:'b33',cat:'bebestibles',nombre:'Pap 3 L',unidad:'Un'},
+  {id:'b34',cat:'bebestibles',nombre:'Pap 591 cc',unidad:'Un'},
+  {id:'b35',cat:'bebestibles',nombre:'Pap Lata 350 cc',unidad:'Un'},
+  {id:'b36',cat:'bebestibles',nombre:'Pepsi 1.5 L',unidad:'Un'},
+  {id:'b37',cat:'bebestibles',nombre:'Pepsi 3 L',unidad:'Un'},
+  {id:'b38',cat:'bebestibles',nombre:'Pepsi 591 cc',unidad:'Un'},
+  {id:'b39',cat:'bebestibles',nombre:'Pepsi Lata 350 cc',unidad:'Un'},
+  {id:'b40',cat:'bebestibles',nombre:'Sprite 1.5 L',unidad:'Un'},
+  {id:'b41',cat:'bebestibles',nombre:'Sprite 3 L',unidad:'Un'},
+  {id:'b42',cat:'bebestibles',nombre:'Sprite 591 cc',unidad:'Un'},
+  {id:'b43',cat:'bebestibles',nombre:'Sprite Lata 350 cc',unidad:'Un'},
+  {id:'b44',cat:'bebestibles',nombre:'Sprite Zero 1.5 L',unidad:'Un'},
+  {id:'b45',cat:'bebestibles',nombre:'Sprite Zero Lata 350 cc',unidad:'Un'},
+  {id:'b46',cat:'bebestibles',nombre:'Vaso Plástico',unidad:'Paquete'},
+  {id:'b47',cat:'bebestibles',nombre:'Vital Agua con Gas 1.6 L',unidad:'Un'},
+  {id:'b48',cat:'bebestibles',nombre:'Vital Sin Gas 1.6 L',unidad:'Un'},
+  {id:'b49',cat:'bebestibles',nombre:'Vital Sin Gas 600 cc',unidad:'Un'},
+  {id:'b50',cat:'bebestibles',nombre:'Vital Con Gas 600 cc',unidad:'Un'},
+  {id:'b51',cat:'bebestibles',nombre:'Coca-Cola 3 L',unidad:'Un'},
+];
 
-N��[Y[���][[Y[��RY
-	ۙ]�����X��I�K��[YOI����[Y[���][[Y[��RY
-	ۙ]���[�YY	�K��[YOI������\�
-	��!H��X��YܙY�Y��	��X��\���NB��[��[ۈ�[[ݙT��X�
-Y
-^Y�X�ۙ�\�J	��[[Z[�\�\�H��X����JH�]\���ۜ��Y�]�
-N����X���J����X���ˋ�����АT�WJK��[\�O��YOOZY
-N�]�Q��N�[�\�X�J
-N��Y^Q]J
-N��[�\���\�
+// ═══════════════════════════════════════════════════
+//  DATABASE
+// ═══════════════════════════════════════════════════
+function getDB(){
+  try{
+    const d=JSON.parse(localStorage.getItem('invDB_v3')||'null');
+    if(d) return d;
+  }catch(e){}
+  return {productos:[...PRODS_BASE],registros:[],passwords:{admin:'admin123',caja:'caja123'}};
+}
+function saveDB(db){ localStorage.setItem('invDB_v3',JSON.stringify(db)); }
+function getProds(){ return getDB().productos||[...PRODS_BASE]; }
 
-N����\�
-	�'��H��X��[[Z[�Y��	��\���NB��[��[ۈ�[�\�YZ[��\�[Y[�
-^�ۜ��Y�]�
-N�ۜ��Y���Y�\�����N��[Y[���][[Y[��RY
-	��]�YZ[��K�[��\�SX�]��\��H��]X�\���]��\��H��][X�[��0�X\��Y�\��Y���]��]��\��H��]]�[YH��܋�[��O�]���]���]��\��H��]X�\�ܙY[���]��\��H��][X�[����X���[�\�O�]��]��\��H��]]�[YHܙY[�����]���
-K�[��O�]���]���]��\��H��]X�\�ܘ[��H��]��\��H��][X�[���[[��Y�\����]��]��\��H��]]�[YHܘ[��H��[OH��۝\�^�N�M��܋�[��ٛܛX]�X�J��K��X�JN���%	�O�]���]����[Y[���][[Y[��RY
-	�YZ[��\�[Y[��K�[��\�SX�]��[OH�\�^N��^ٛ^Y\�X�[ێ���[[���\��ٛ۝\�^�N�L�ȏ��]��[OH�\�^N��^ڝ\�Y�KX�۝[���X�KX�]�Y[��Y[�΍�؛ܙ\�X���N�\��Y�Y���ȏ��[��[OH���܎�͘��N���[�Y�\������[����ۙω܋�[��O���ۙϏ�]���]��[OH�\�^N��^ڝ\�Y�KX�۝[���X�KX�]�Y[��Y[�΍�؛ܙ\�X���N�\��Y�Y���ȏ��[��[OH���܎�͘��N�����[�O��[����ۙω��]���
-K��[\�O���]OOI����[�I�K�[��H��X������ۙϏ�]���]��[OH�\�^N��^ڝ\�Y�KX�۝[���X�KX�]�Y[��Y[�΍�؛ܙ\�X���N�\��Y�Y���ȏ��[��[OH���܎�͘��N��[\Y^�O��[����ۙω��]���
-K��[\�O���]OOI�[\Y^�I�K�[��H��X������ۙϏ�]���]��[OH�\�^N��^ڝ\�Y�KX�۝[���X�KX�]�Y[��Y[�΍����[��[OH���܎�͘��N���X�\�X�\���[����ۙω��]���
-K��[\�O���]OOIؙX�\�X�\��K�[��H��X������ۙϏ�]����]��B��[��[ۈ�[��T\���ܙ
+// ═══════════════════════════════════════════════════
+//  AUTH
+// ═══════════════════════════════════════════════════
+let curUser=null,curRole=null;
 
-^�ۜ�\�\�Y��[Y[���][[Y[��RY
-	�\��\�\��K��[YN�ۜ�\��Y��[Y[���][[Y[��RY
-	ۙ]�\���K��[YNY�\\��\�˛[��
+function doLogin(){
+  const u=document.getElementById('loginUser').value.trim().toLowerCase();
+  const p=document.getElementById('loginPass').value;
+  const db=getDB();
+  if(u==='admin'&&p===db.passwords.admin){startSession('Administrador','admin');return;}
+  if(u==='caja'&&p===db.passwords.caja){startSession('Caja','caja');return;}
+  document.getElementById('loginErr').textContent='⚠️ Usuario o contraseña incorrectos';
+}
+function quickLogin(role){
+  if(role==='admin') startSession('Administrador','admin');
+  else startSession('Caja','caja');
+}
+function startSession(name,role){
+  curUser=name; curRole=role;
+  document.getElementById('loginErr').textContent='';
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('appScreen').style.display='flex';
+  document.getElementById('topbarUser').textContent=name;
+  document.getElementById('topbarRole').textContent=role==='admin'?'Admin':'Caja';
+  document.getElementById('tabAdmin').style.display=role==='admin'?'':'none';
+  const today=new Date().toISOString().slice(0,10);
+  const fi=document.getElementById('fechaDia');
+  fi.value=today;
+  if(role!=='admin'){ fi.max=today; fi.min=today; } else { fi.removeAttribute('max'); fi.removeAttribute('min'); }
+  renderTable();
+  loadDayData();
+  document.getElementById('saveBar').style.display='flex';
+  histYear=new Date().getFullYear(); histMonth=new Date().getMonth();
+}
+function logout(){
+  curUser=null; curRole=null;
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('appScreen').style.display='none';
+  document.getElementById('saveBar').style.display='none';
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+  switchTab('ingresar');
+}
+document.getElementById('loginUser').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('loginPass').focus();});
+document.getElementById('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 
-^�����\�
-	���;�#��۝�\�p�XHp�[�[[�
-�\�X�\�\��	��\���Nܙ]\���B��ۜ��Y�]�
-N��\���ܙ�Y��\���ܙ��YZ[���YZ[�L����Z�N���Z�LL���N��\���ܙ��\�\�O\\���]�Q��N��[Y[���][[Y[��RY
-	ۙ]�\���K��[YOI������\�
-	��!H�۝�\�p�XHX�X[^�YH\�H	��\�\�	��X��\���NB��[��[ۈ�X\�[]J
-^Y�X�ۙ�\�J	���;�#�0��[[Z[�\�������Y�\�����\�HX��p�ۈ���HYYH\�X�\���JH�]\���ۜ��Y�]�
-N����Y�\����V�N��]�Q��N�[�\�YZ[�
-N�����\�
-	�'��H�Y�\����[[Z[�Y���	��\���NB��[��[ۈ^ܝ��ӊ
-^�ۜ��؏[�]��؊Ҕ�Ӌ���[��Y�J�]�
-K�[�WK�\N��\X�][ۋڜ�ۉ�JN�ۜ�OY��[Y[��ܙX]Q[[Y[�
-	�I�NK��Y�UT��ܙX]Sؚ�X�T�
-�؊NK��ۛ�YI�[��[�\�[�ؘX��\��ۙ]�]J
-K��T����[��
-K��X�JL
-J�˚��ۉ�K��X��
-N�����\�
-	��!H�X��\^ܝY��	��X��\���NB��[��[ۈ[\ܝ��ӊJ^�ۜ��[OYK�\��]��[\��N�Y�Y�[JH�]\���ۜ��[�]��[T�XY\�
-N��ۛ�YY]�O��^�ۜ�R��Ӌ�\��J]��\��]��\�[
-NY�Y��Y�\����H����]�\��܊
-NY��ۙ�\�J0��[\ܝ\�	���Y�\���˛[��H�Y�\�����\���Y[\^�\��H��]��X�X[\˘
-J^�]�Q�
-N��[�\�X�J
-N��Y^Q]J
-N��[�\�YZ[�
-N����\�
-	��!H]��[\ܝY���	��X��\���NB�X�]������\�
-	��c\��]����ӈ[���[Y��	�\��܉�N�B�N���XY\�^
-�[JN�K�\��]��[YOI��B����8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d�������8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d��[��[ۈ�Z[^T��X�J^�ۜ�ڜ��O]�[��˚����ۜ���[�]�����ܚY[�][ێ��ܝ�Z]	�[�]��[I��ܛX]��M	�JN�ۜ����Y�]���
-N�ۜ��Y�]�
-N�ۜ��Y�Y���Y�\���˙�[�
-�O����X�OOOY�X�JN�ۜ��[�]�]J�X�J��L��	�K����[Q]T��[��	�\�P�	���YZ�^N��ۙ��YX\��۝[Y\�X��[۝��ۙ��^N�۝[Y\�X��JN��XY\���˜�]�[��܊��
-NL�N�˜�X�
-�L��	щ�N�˜�]^��܊�MK�MK�MJN�˜�]�۝�^�JMJN��˜�]�۝
-[�Y�[�Y	؛�	�N�˝^
-	�S��S�T�S�PT�S�8�%�P�����MLJN�˜�]�۝�^�JJN��˜�]�۝
-[�Y�[�Y	ۛܛX[	�N�˝^
-���\�]
-
-K��\\��\�J
-J����X�JJKMNJN�˝^
-	��[�\�YΈ	�ۙ]�]J
-K����[T��[��	�\�P�	�KMNJN]OL̎�ۜ��]�V���^N�����[�I�X�[��S��S�T�S����S�I����̍�
-NL�_K��^N��[\Y^�I�X�[��S��S�T�S�STQV�I����̍�L�
-�_K��^N�ؙX�\�X�\��X�[�БP�T�P�T������L��
-�K��_WN�]˙�ܑXX�
-�O��ۜ�\�\��˙�[\�O���]OOX˚�^JNY�[\��[��
-H�]\���˜�]�[��܊���˘��
-N�˜�X�
-MKMN�	щ�N�˜�]^��܊�MK�MK�MJN��˜�]�۝�^�JL
-N��˜�]�۝
-[�Y�[�Y	؛�	�N�˝^
-˛X�[M�J�JNJ�M��ۜ�����[\��X\
+// ═══════════════════════════════════════════════════
+//  TABS
+// ═══════════════════════════════════════════════════
+function switchTab(tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel'+tab[0].toUpperCase()+tab.slice(1)).classList.add('active');
+  document.getElementById('saveBar').style.display=tab==='ingresar'?'flex':'none';
+  if(tab==='historial') renderHistorial();
+  if(tab==='admin') renderAdmin();
+}
 
-JOO�]]OI��؜�I��Y��Y�^��ۜ�]\�Y˚][\˙�[�
-O��YOO\�Y
-N�Y�]
-^�]OZ]��[�YYOO[�[���[��]��[�YY
-N����؜�Z]�؜�	���_B��]\���J�K���X��K�[�YY]K؜�NJN�˘]]�X�J�\�N�K�XY������	���X���	�[�YY	�	��[�YY	�	�؜�\��X�p�ۉ�WK���N������[YN��ܚY	���[\Ξٛ۝�^�N��[Y[�ΌK�_K�XY�[\Ξٚ[��܎�̍�
-�K^��܎�͌LK�۝�[N�؛�	��۝�^�N�K���[[��[\Ξ����[�Y�[Yێ���[�\��KN���[�Y��K����[�Y��KΞ��[�Y���[Yێ���[�\��K
-���[�Y�L_K�X\��[���Y��M�Y��MK�JNOY�˛\�]]�X�K��[�[J�NJNY��Yɉ��Y˛؜��[�\�[
-^�˜�]�[��܊�
-K�
-K�
-JN��˜�X�
-MKL�N�L	щ�N�˜�]�۝�^�J
-N��˜�]�۝
-[�Y�[�Y	؛�	�N��˜�]^��܊
-L
-L
-L
-N�˝^
-	�Д�T��P�SӑTΈ	�M�J̊N�˜�]�۝
-[�Y�[�Y	ۛܛX[	�N��˝^
-�Y˛؜��[�\�[
-MKJ̊NB��˜�]�۝�^�J
-�N��˜�]^��܊M�M�M�
-N�˝^
-	ԚX����0���۝��H[��[�\�[�0��	�ۙ]�]J
-K����[Q]T��[��	�\�P�	�KM�˚[�\��[�Y�T�^�K�ZY�M�N�]\����B���[��[ۈ^ܝ�
-^�ۜ��X�OY��[Y[���][[Y[��RY
-	ٙX�QXI�K��[YNY�Y�X�J^�����\�
-	���;�#��[X��[ۘH[�H�X�I�	��\���Nܙ]\���B��Z[^T��X�JK��]�J	�[��[�\�[���ٙX�J�˜��N����\�
-	�'����[�\�Y��	��X��\���NB��[��[ۈ^ܝ^T��X�J^�Z[^T��X�JK��]�J	�[��[�\�[���ٙX�J�˜��N����\�
-	�'����[�\�Y��	��X��\���NB���[��[ۈ^ܝ[۝�
-^�ۜ��Y�]�
-N�ۜ��Y�^Z\�YX\���I����[��\�[۝
-�JK�Y�\�
-�	�	�N�ۜ��Y��Y���Y�\���˙�[\��O����X�K��\���]
-�Y�^
-JK��ܝ
+// ═══════════════════════════════════════════════════
+//  RENDER TABLE
+// ═══════════════════════════════════════════════════
+function renderTable(){
+  const prods=getProds();
+  ['cocina','limpieza','bebestibles'].forEach(cat=>{
+    const tb=document.getElementById('tbody-'+cat);
+    const list=prods.filter(p=>p.cat===cat);
+    tb.innerHTML=list.map((p,i)=>`
+      <tr>
+        <td class="td-num">${i+1}</td>
+        <td class="td-prod">${esc(p.nombre)}</td>
+        <td class="td-unit">${esc(p.unidad)}</td>
+        <td class="td-qty"><input type="number" min="0" step="0.01" class="qty-input" id="qty-${p.id}" data-id="${p.id}" placeholder="—" oninput="onQty(this)"></td>
+        <td class="td-obs"><input type="text" class="obs-input" id="obs-${p.id}" placeholder="" maxlength="80"></td>
+      </tr>`).join('');
+  });
+  updateStats();
+}
 
-K�OO�K��X�K���[P��\\�J���X�JJNY�\�Y�˛[��
-^�����\�
-	���;�#��[��Y�\����[�\�HY\��	��\���Nܙ]\���B��ۜ�ڜ��O]�[��˚����ۜ���[�]�����ܚY[�][ێ��[���\I�[�]��[I��ܛX]��M	�JN�ۜ����Y�]���
-N�˜�]�[��܊��
-NL�N��˜�X�
-�M��	щ�N�˜�]^��܊�MK�MK�MJN��˜�]�۝�^�JM
-N��˜�]�۝
-[�Y�[�Y	؛�	�N�˝^
-	ԑT�SQS�QS��PS8�%�P�����ML
-N�˜�]�۝�^�JL
-N��˜�]�۝
-[�Y�[�Y	ۛܛX[	�N�˝^
-Sӕ��\�[۝J��	��\�YX\���0��	�ܙY�˛[��
-��0�X\��Y�\��Y���MN
-N�ۜ�^\�\�Y�˛X\
-�O����X�K��X�J
-JN�ۜ�XYV�����X���	�[�����^\�WN�ۜ���O\��˛X\
-O��ۜ����V����X��K�[�YYN�Y�˙�ܑXX�
-�Y�O���ۜ�]\�Y˚][\˙�[�
-O��YOO\�Y
-Nܛ�˜\�
-]	��]��[�YYOO[�[�]��[�YY���N�JN�]\�����JN�˘]]�X�J�\�N��XY��K[YN��ܚY	���[\Ξٛ۝�^�N���K�[Y[�Ό_K�XY�[\Ξٚ[��܎�̍�
-NL�K^��܎�̍MK�MK�MWK�۝�[N�؛�	�[Yێ���[�\���۝�^�N��K���[[��[\Ξ����[�Y�NKN���[�Y�L�[Yێ���[�\��_K�X\��[���Y��L�Y��LK�JN�˜�]�۝�^�J
-�N��˜�]^��܊M�M�M�
-N�˝^
-	ԚX����0���[�\�Y�	�ۙ]�]J
-K����[T��[��	�\�P�	�KL�˚[�\��[�Y�T�^�K�ZY�MJN�˜�]�J	�[��[�\�[��Y[��X[���\�YX\��������[��\�[۝
-�JK�Y�\�
-�	�	�J�˜��N����\�
-	�'���\�[Y[�Y[��X[��[�\�Y��	��X��\���NB����8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d���US��8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d8�d��[��[ۈ�ܛX]�X�J
-^�Y�Y
-\�]\������ۜ��KKOY��]
-	�I�Nܙ]\��	�K��_K��_X�B��[��[ۈ\���^ܙ]\����[���	��K��\X�Jɋ��	ɘ[\��K��\X�J���	ɛ��K��\X�Jϋ��	ə���K��\X�Jȋ��	ɜ][���N�B�]�\��[��[ۈ����\�
-\��\OI��^�ۜ�[Y��[Y[���][[Y[��RY
-	��\�	�N[�^�۝[�[\���[��\�Ә[YOI��\����	��\N�X\�[Y[�]
-�\�
-N��\�\�][Y[�]
+function onQty(el){
+  el.classList.toggle('filled',el.value!==''&&parseFloat(el.value)>=0);
+  updateSaveBar();
+}
 
+function updateSaveBar(){
+  const fecha=document.getElementById('fechaDia').value;
+  const n=document.querySelectorAll('.qty-input.filled').length;
+  document.getElementById('saveBarFecha').textContent=formatFecha(fecha);
+  document.getElementById('saveBarCount').textContent=n+' producto'+(n!==1?'s':'')+' con cantidad';
+}
 
-OO�[��\�Ә[YOI��\�	��
-NB���ܚ\��؛�O���[�
+// ═══════════════════════════════════════════════════
+//  LOAD / SAVE
+// ═══════════════════════════════════════════════════
+function loadDayData(){
+  const fecha=document.getElementById('fechaDia').value;
+  const db=getDB();
+  const reg=db.registros.find(r=>r.fecha===fecha);
+  getProds().forEach(p=>{
+    const qi=document.getElementById('qty-'+p.id);
+    const oi=document.getElementById('obs-'+p.id);
+    if(!qi) return;
+    if(reg){
+      const it=reg.items.find(x=>x.id===p.id);
+      qi.value=it&&it.cantidad!==null?it.cantidad:'';
+      oi.value=it?it.obs||'':'';
+    } else {
+      qi.value=''; oi.value='';
+    }
+    qi.classList.toggle('filled',qi.value!==''&&parseFloat(qi.value)>=0&&qi.value!=='');
+  });
+  document.getElementById('obsGeneral').value=reg?reg.obsGeneral||'':'';
+  updateSaveBar();
+  updateStats();
+}
+
+function saveDayData(){
+  const fecha=document.getElementById('fechaDia').value;
+  if(!fecha){showToast('⚠️ Selecciona una fecha','warn');return;}
+  const db=getDB();
+  const prods=getProds();
+  const items=prods.map(p=>{
+    const qi=document.getElementById('qty-'+p.id);
+    const oi=document.getElementById('obs-'+p.id);
+    const val=qi?qi.value.trim():'';
+    return {id:p.id, cantidad:val!==''?parseFloat(val):null, obs:oi?oi.value.trim():''};
+  });
+  const rec={fecha,items,obsGeneral:document.getElementById('obsGeneral').value.trim(),savedAt:new Date().toISOString(),savedBy:curUser};
+  const idx=db.registros.findIndex(r=>r.fecha===fecha);
+  if(idx>=0) db.registros[idx]=rec; else db.registros.push(rec);
+  db.registros.sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  saveDB(db);
+  showToast('✅ Registro guardado — '+formatFecha(fecha),'success');
+  updateStats();
+}
+
+function clearAllQty(){
+  if(!confirm('¿Limpiar todas las cantidades?')) return;
+  document.querySelectorAll('.qty-input').forEach(el=>{el.value='';el.classList.remove('filled');});
+  document.querySelectorAll('.obs-input').forEach(el=>el.value='');
+  document.getElementById('obsGeneral').value='';
+  updateSaveBar(); updateStats();
+}
+
+// ═══════════════════════════════════════════════════
+//  STATS
+// ═══════════════════════════════════════════════════
+function updateStats(){
+  const total=document.querySelectorAll('.qty-input').length;
+  const llenos=document.querySelectorAll('.qty-input.filled').length;
+  const pct=total?Math.round(llenos/total*100):0;
+  document.getElementById('statsIngresar').innerHTML=`
+    <div class="stat-card"><div class="stat-label">Total productos</div><div class="stat-value">${total}</div></div>
+    <div class="stat-card green"><div class="stat-label">Con cantidad</div><div class="stat-value green">${llenos}</div></div>
+    <div class="stat-card orange"><div class="stat-label">Completado</div><div class="stat-value orange">${pct}%</div></div>`;
+}
+
+// ═══════════════════════════════════════════════════
+//  TOGGLE SECTIONS
+// ═══════════════════════════════════════════════════
+function toggleSection(cat){
+  const body=document.getElementById('body-'+cat);
+  const tog=document.getElementById('tog-'+cat);
+  const open=!body.classList.contains('collapsed');
+  body.classList.toggle('collapsed',open);
+  tog.textContent=open?'▶':'▼';
+}
+
+// ═══════════════════════════════════════════════════
+//  HISTORIAL
+// ═══════════════════════════════════════════════════
+let histYear=new Date().getFullYear(), histMonth=new Date().getMonth();
+const MONTHS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+function changeMonth(d){
+  histMonth+=d;
+  if(histMonth>11){histMonth=0;histYear++;}
+  if(histMonth<0){histMonth=11;histYear--;}
+  renderHistorial();
+}
+
+function renderHistorial(){
+  document.getElementById('monthLabel').textContent=MONTHS[histMonth]+' '+histYear;
+  const db=getDB();
+  const prefix=histYear+'-'+String(histMonth+1).padStart(2,'0');
+  const regs=db.registros.filter(r=>r.fecha.startsWith(prefix)).sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  const grid=document.getElementById('monthGrid');
+  if(!regs.length){
+    grid.innerHTML=`<div class="no-data"><div class="no-data-icon">📋</div>Sin registros para ${MONTHS[histMonth]} ${histYear}</div>`;
+    return;
+  }
+  const prods=getProds();
+  grid.innerHTML=regs.map(reg=>{
+    const filled=reg.items.filter(x=>x.cantidad!==null&&x.cantidad>0).length;
+    const dn=new Date(reg.fecha+'T12:00').toLocaleDateString('es-CL',{weekday:'long'});
+    const dn2=dn.charAt(0).toUpperCase()+dn.slice(1);
+    return `<div class="day-card">
+      <div class="day-card-header" onclick="toggleDay(this,'${reg.fecha}')">
+        <div>
+          <div class="day-card-date">${formatFecha(reg.fecha)} · ${dn2}</div>
+          <div class="day-card-info">${filled} productos con cantidad${reg.obsGeneral?' · '+esc(reg.obsGeneral):''}</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          ${curRole==='admin'?`<button class="btn btn-accent btn-sm" onclick="event.stopPropagation();exportDayPDF('${reg.fecha}')">📄 PDF</button>`:''}
+          <span>▼</span>
+        </div>
+      </div>
+      <div class="day-card-body" id="dayBody-${reg.fecha}">
+        ${buildDayView(reg,prods)}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleDay(header,fecha){
+  const body=document.getElementById('dayBody-'+fecha);
+  const chev=header.querySelector('span:last-child');
+  const open=body.classList.contains('open');
+  body.classList.toggle('open',!open);
+  if(chev) chev.textContent=open?'▼':'▲';
+}
+
+function buildDayView(reg,prods){
+  const filled=reg.items.filter(x=>x.cantidad!==null&&x.cantidad>0);
+  if(!filled.length) return '<p style="padding:14px;color:#888;font-size:13px;">Sin cantidades ingresadas</p>';
+  const cats=[{key:'cocina',label:'🍳 Cocina'},{key:'limpieza',label:'🧹 Limpieza'},{key:'bebestibles',label:'🥤 Bebestibles'}];
+  return cats.map(c=>{
+    const items=filled.filter(x=>{const p=prods.find(pr=>pr.id===x.id);return p&&p.cat===c.key;});
+    if(!items.length) return '';
+    return `<div class="cat-sep">${c.label}</div>
+      <table class="view-table"><thead><tr><th>Producto</th><th>Unidad</th><th>Cantidad</th><th>Obs.</th></tr></thead>
+      <tbody>${items.map(x=>{const p=prods.find(pr=>pr.id===x.id);return p?`<tr><td>${esc(p.nombre)}</td><td>${esc(p.unidad)}</td><td class="qty-badge">${x.cantidad}</td><td>${esc(x.obs||'')}</td></tr>`:''}).join('')}</tbody></table>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════
+//  ADMIN
+// ═══════════════════════════════════════════════════
+function renderAdmin(){
+  renderProdList();
+  renderAdminResumen();
+}
+function renderProdList(){
+  const prods=getProds();
+  const cl={cocina:'cat-cocina-badge',limpieza:'cat-limpieza-badge',bebestibles:'cat-bebestibles-badge'};
+  const lb={cocina:'Cocina',limpieza:'Limpieza',bebestibles:'Beb.'};
+  document.getElementById('prodList').innerHTML=prods.map(p=>`
+    <div class="prod-item">
+      <span class="cat-badge ${cl[p.cat]}">${lb[p.cat]}</span>
+      <span class="prod-item-name">${esc(p.nombre)}</span>
+      <span class="prod-item-unit">${esc(p.unidad)}</span>
+      <button class="btn-del" onclick="removeProduct('${p.id}')">✕</button>
+    </div>`).join('');
+  document.getElementById('prodCount').textContent=prods.length;
+}
+function addProduct(){
+  const nombre=document.getElementById('newProdNombre').value.trim();
+  const unidad=document.getElementById('newProdUnidad').value.trim()||'Un';
+  const cat=document.getElementById('newProdCat').value;
+  if(!nombre){showToast('⚠️ Ingresa el nombre del producto','warn');return;}
+  const db=getDB();
+  if(!db.productos) db.productos=[...PRODS_BASE];
+  if(db.productos.find(p=>p.nombre.toLowerCase()===nombre.toLowerCase())){showToast('⚠️ Ya existe ese producto','warn');return;}
+  const id=cat[0]+Date.now().toString(36);
+  db.productos.push({id,cat,nombre,unidad});
+  saveDB(db);
+  renderTable(); loadDayData(); renderProdList();
+  document.getElementById('newProdNombre').value='';
+  document.getElementById('newProdUnidad').value='';
+  showToast('✅ Producto agregado','success');
+}
+function removeProduct(id){
+  if(!confirm('¿Eliminar este producto?')) return;
+  const db=getDB();
+  db.productos=(db.productos||[...PRODS_BASE]).filter(p=>p.id!==id);
+  saveDB(db);
+  renderTable(); loadDayData(); renderProdList();
+  showToast('🗑 Producto eliminado','warn');
+}
+function renderAdminResumen(){
+  const db=getDB();
+  const r=db.registros||[];
+  document.getElementById('statsAdmin').innerHTML=`
+    <div class="stat-card"><div class="stat-label">Días registrados</div><div class="stat-value">${r.length}</div></div>
+    <div class="stat-card green"><div class="stat-label">Productos en lista</div><div class="stat-value green">${getProds().length}</div></div>
+    <div class="stat-card orange"><div class="stat-label">Último registro</div><div class="stat-value orange" style="font-size:14px">${r.length?formatFecha(r[0].fecha):'—'}</div></div>`;
+  document.getElementById('adminResumen').innerHTML=`
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;">
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #edf2f7"><span style="color:#6b7a8d">Total registros</span><strong>${r.length}</strong></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #edf2f7"><span style="color:#6b7a8d">Cocina</span><strong>${getProds().filter(p=>p.cat==='cocina').length} productos</strong></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #edf2f7"><span style="color:#6b7a8d">Limpieza</span><strong>${getProds().filter(p=>p.cat==='limpieza').length} productos</strong></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0"><span style="color:#6b7a8d">Bebestibles</span><strong>${getProds().filter(p=>p.cat==='bebestibles').length} productos</strong></div>
+    </div>`;
+}
+function changePassword(){
+  const user=document.getElementById('passUser').value;
+  const pass=document.getElementById('newPass').value;
+  if(!pass||pass.length<4){showToast('⚠️ Contraseña mínimo 4 caracteres','warn');return;}
+  const db=getDB();
+  db.passwords=db.passwords||{admin:'admin123',caja:'caja123'};
+  db.passwords[user]=pass;
+  saveDB(db);
+  document.getElementById('newPass').value='';
+  showToast('✅ Contraseña actualizada para '+user,'success');
+}
+function clearAllData(){
+  if(!confirm('⚠️ ¿Eliminar TODOS los registros? Esta acción no se puede deshacer.')) return;
+  const db=getDB(); db.registros=[]; saveDB(db);
+  renderAdmin(); showToast('🗑 Registros eliminados','warn');
+}
+function exportJSON(){
+  const blob=new Blob([JSON.stringify(getDB(),null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='inventario_backup_'+new Date().toISOString().slice(0,10)+'.json';
+  a.click(); showToast('✅ Backup exportado','success');
+}
+function importJSON(e){
+  const file=e.target.files[0]; if(!file) return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    try{
+      const d=JSON.parse(ev.target.result);
+      if(!d.registros) throw new Error();
+      if(confirm(`¿Importar ${d.registros.length} registros? Esto reemplazará los datos actuales.`)){
+        saveDB(d); renderTable(); loadDayData(); renderAdmin();
+        showToast('✅ Datos importados','success');
+      }
+    }catch{showToast('❌ Archivo JSON inválido','error');}
+  };
+  r.readAsText(file); e.target.value='';
+}
+
+// ═══════════════════════════════════════════════════
+//  PDF
+// ═══════════════════════════════════════════════════
+function buildDayPDF(fecha){
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+  const prods=getProds();
+  const db=getDB();
+  const reg=db.registros.find(r=>r.fecha===fecha);
+  const dn=new Date(fecha+'T12:00').toLocaleDateString('es-CL',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  // Header
+  doc.setFillColor(26,58,92);
+  doc.rect(0,0,210,26,'F');
+  doc.setTextColor(255,255,255);
+  doc.setFontSize(15);doc.setFont(undefined,'bold');
+  doc.text('INVENTARIO DIARIO — RICOPOLLO',14,11);
+  doc.setFontSize(9);doc.setFont(undefined,'normal');
+  doc.text(dn.charAt(0).toUpperCase()+dn.slice(1),14,19);
+  doc.text('Generado: '+new Date().toLocaleString('es-CL'),140,19);
+  let y=32;
+  const cats=[{key:'cocina',label:'INVENTARIO COCINA',col:[26,58,92]},{key:'limpieza',label:'INVENTARIO LIMPIEZA',col:[26,92,42]},{key:'bebestibles',label:'BEBESTIBLES',col:[122,79,26]}];
+  cats.forEach(c=>{
+    const list=prods.filter(p=>p.cat===c.key);
+    if(!list.length) return;
+    doc.setFillColor(...c.col);
+    doc.rect(14,y-4,182,8,'F');
+    doc.setTextColor(255,255,255);doc.setFontSize(10);doc.setFont(undefined,'bold');
+    doc.text(c.label,16,y+1);
+    y+=7;
+    const rows=list.map((p,i)=>{
+      let qty='',obs='';
+      if(reg){const it=reg.items.find(x=>x.id===p.id);if(it){qty=it.cantidad!==null?String(it.cantidad):'';obs=it.obs||'';}}
+      return[i+1,p.nombre,p.unidad,qty,obs];
+    });
+    doc.autoTable({
+      startY:y,
+      head:[['#','Producto','Unidad','Cantidad','Observación']],
+      body:rows,
+      theme:'grid',
+      styles:{fontSize:8,cellPadding:1.5},
+      headStyles:{fillColor:[240,244,248],textColor:[60,80,100],fontStyle:'bold',fontSize:8},
+      columnStyles:{0:{cellWidth:8,halign:'center'},1:{cellWidth:82},2:{cellWidth:20},3:{cellWidth:22,halign:'center'},4:{cellWidth:50}},
+      margin:{left:14,right:14},
+    });
+    y=doc.lastAutoTable.finalY+5;
+  });
+  if(reg&&reg.obsGeneral){
+    doc.setFillColor(245,245,245);doc.rect(14,y-3,182,10,'F');
+    doc.setFontSize(8);doc.setFont(undefined,'bold');doc.setTextColor(50,50,50);
+    doc.text('OBSERVACIONES: ',16,y+2);
+    doc.setFont(undefined,'normal');doc.text(reg.obsGeneral,55,y+2);
+  }
+  doc.setFontSize(7);doc.setTextColor(160,160,160);
+  doc.text('Ricopollo · Control de Inventario · '+new Date().toLocaleDateString('es-CL'),14,doc.internal.pageSize.height-6);
+  return doc;
+}
+
+function exportPDF(){
+  const fecha=document.getElementById('fechaDia').value;
+  if(!fecha){showToast('⚠️ Selecciona una fecha','warn');return;}
+  buildDayPDF(fecha).save('inventario_'+fecha+'.pdf');
+  showToast('📄 PDF generado','success');
+}
+function exportDayPDF(fecha){
+  buildDayPDF(fecha).save('inventario_'+fecha+'.pdf');
+  showToast('📄 PDF generado','success');
+}
+
+function exportMonthPDF(){
+  const db=getDB();
+  const prefix=histYear+'-'+String(histMonth+1).padStart(2,'0');
+  const regs=db.registros.filter(r=>r.fecha.startsWith(prefix)).sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  if(!regs.length){showToast('⚠️ Sin registros en este mes','warn');return;}
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
+  const prods=getProds();
+  doc.setFillColor(26,58,92);doc.rect(0,0,297,24,'F');
+  doc.setTextColor(255,255,255);doc.setFontSize(14);doc.setFont(undefined,'bold');
+  doc.text('RESUMEN MENSUAL — RICOPOLLO',14,10);
+  doc.setFontSize(10);doc.setFont(undefined,'normal');
+  doc.text(MONTHS[histMonth]+' '+histYear+'  ·  '+regs.length+' días registrados',14,18);
+  const days=regs.map(r=>r.fecha.slice(8));
+  const head=[['Producto','Un',...days]];
+  const body=prods.map(p=>{
+    const row=[p.nombre,p.unidad];
+    regs.forEach(reg=>{const it=reg.items.find(x=>x.id===p.id);row.push(it&&it.cantidad!==null?it.cantidad:'');});
+    return row;
+  });
+  doc.autoTable({
+    startY:28,head,body,theme:'grid',
+    styles:{fontSize:6.5,cellPadding:1},
+    headStyles:{fillColor:[26,58,92],textColor:[255,255,255],fontStyle:'bold',halign:'center',fontSize:7},
+    columnStyles:{0:{cellWidth:58},1:{cellWidth:12,halign:'center'}},
+    margin:{left:10,right:10},
+  });
+  doc.setFontSize(7);doc.setTextColor(160,160,160);
+  doc.text('Ricopollo · Generado '+new Date().toLocaleString('es-CL'),10,doc.internal.pageSize.height-5);
+  doc.save('inventario_mensual_'+histYear+'_'+String(histMonth+1).padStart(2,'0')+'.pdf');
+  showToast('📄 Resumen mensual PDF generado','success');
+}
+
+// ═══════════════════════════════════════════════════
+//  UTILS
+// ═══════════════════════════════════════════════════
+function formatFecha(d){if(!d)return'';const[y,m,dd]=d.split('-');return`${dd}/${m}/${y}`;}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+let toastT;
+function showToast(msg,type=''){
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.className='toast show '+type;
+  clearTimeout(toastT); toastT=setTimeout(()=>el.className='toast',3000);
+}
+</script>
+</body>
+</html>
