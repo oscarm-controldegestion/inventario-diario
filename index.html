@@ -47,14 +47,6 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color:
   transition: background .2s; margin-bottom: 16px;
 }
 .btn-login:hover { background: var(--primary-light); }
-.quick-access { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
-.quick-btns { display: flex; gap: 10px; justify-content: center; }
-.btn-quick {
-  flex: 1; padding: 8px 12px; border-radius: 20px; border: 1.5px solid var(--border);
-  background: #f8fafc; font-size: 12px; cursor: pointer; font-weight: 500;
-  color: var(--text); transition: all .2s;
-}
-.btn-quick:hover { border-color: var(--primary); color: var(--primary); background: #eef4fb; }
 .login-err { color: var(--danger); font-size: 13px; margin-bottom: 8px; min-height: 20px; }
 
 /* APP */
@@ -266,6 +258,11 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color:
 .cat-bebestibles-badge { background: #fef3c7; color: #7a4f1a; }
 .btn-del { padding: 2px 7px; font-size: 11px; background: #fee2e2; color: #dc3545; border: none; border-radius: 4px; cursor: pointer; flex-shrink: 0; }
 .btn-del:hover { background: #dc3545; color: #fff; }
+.btn-edit-unit { padding: 2px 7px; font-size: 11px; background: #dbeafe; color: #1a3a5c; border: none; border-radius: 4px; cursor: pointer; flex-shrink: 0; }
+.btn-edit-unit:hover { background: #1a3a5c; color: #fff; }
+.unit-edit-input { width: 60px; font-size: 11px; padding: 2px 5px; border: 1.5px solid var(--primary-light); border-radius: 4px; outline: none; }
+.btn-save-unit { padding: 2px 7px; font-size: 11px; background: #dcfce7; color: #1a5c2a; border: none; border-radius: 4px; cursor: pointer; flex-shrink: 0; }
+.btn-save-unit:hover { background: #28a745; color: #fff; }
 
 /* TOAST */
 .toast {
@@ -306,11 +303,6 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color:
     <input type="text" id="loginUser" placeholder="Usuario" autocomplete="username" />
     <input type="password" id="loginPass" placeholder="Contraseña" autocomplete="current-password" />
     <button class="btn-login" onclick="doLogin()">🔒 Ingresar</button>
-    <div class="quick-access">Acceso rápido (demo)</div>
-    <div class="quick-btns">
-      <button class="btn-quick" onclick="quickLogin('admin')">👤 Admin</button>
-      <button class="btn-quick" onclick="quickLogin('caja')">🏪 Caja</button>
-    </div>
   </div>
 </div>
 
@@ -623,10 +615,6 @@ function doLogin(){
   if(u==='caja'&&p===db.passwords.caja){startSession('Caja','caja');return;}
   document.getElementById('loginErr').textContent='⚠️ Usuario o contraseña incorrectos';
 }
-function quickLogin(role){
-  if(role==='admin') startSession('Administrador','admin');
-  else startSession('Caja','caja');
-}
 function startSession(name,role){
   curUser=name; curRole=role;
   document.getElementById('loginErr').textContent='';
@@ -746,7 +734,7 @@ function saveDayData(){
 }
 
 function clearAllQty(){
-  if(!confirm('¿Limpiar todas las cantidades?')) return;
+  if(!confirm('°Limpiar todas las cantidades?')) return;
   document.querySelectorAll('.qty-input').forEach(el=>{el.value='';el.classList.remove('filled');});
   document.querySelectorAll('.obs-input').forEach(el=>el.value='');
   document.getElementById('obsGeneral').value='';
@@ -856,13 +844,39 @@ function renderProdList(){
   const cl={cocina:'cat-cocina-badge',limpieza:'cat-limpieza-badge',bebestibles:'cat-bebestibles-badge'};
   const lb={cocina:'Cocina',limpieza:'Limpieza',bebestibles:'Beb.'};
   document.getElementById('prodList').innerHTML=prods.map(p=>`
-    <div class="prod-item">
+    <div class="prod-item" id="pitem-${p.id}">
       <span class="cat-badge ${cl[p.cat]}">${lb[p.cat]}</span>
       <span class="prod-item-name">${esc(p.nombre)}</span>
-      <span class="prod-item-unit">${esc(p.unidad)}</span>
+      <span class="prod-item-unit" id="punit-${p.id}">${esc(p.unidad)}</span>
+      <button class="btn-edit-unit" onclick="startEditUnit('${p.id}')">✏️</button>
       <button class="btn-del" onclick="removeProduct('${p.id}')">✕</button>
     </div>`).join('');
   document.getElementById('prodCount').textContent=prods.length;
+}
+function startEditUnit(id){
+  const unitSpan=document.getElementById('punit-'+id);
+  const current=unitSpan.textContent;
+  const row=document.getElementById('pitem-'+id);
+  const editBtn=row.querySelector('.btn-edit-unit');
+  unitSpan.innerHTML=`<input class="unit-edit-input" id="uedit-${id}" value="${esc(current)}" maxlength="20" onkeydown="if(event.key==='Enter')saveUnit('${id}');if(event.key==='Escape')renderProdList();">`;
+  editBtn.className='btn-save-unit';
+  editBtn.textContent='✔';
+  editBtn.onclick=()=>saveUnit(id);
+  document.getElementById('uedit-'+id).focus();
+  document.getElementById('uedit-'+id).select();
+}
+function saveUnit(id){
+  const input=document.getElementById('uedit-'+id);
+  if(!input) return;
+  const newUnit=input.value.trim();
+  if(!newUnit){showToast('⚠️ La unidad no puede estar vacía','warn');return;}
+  const db=getDB();
+  if(!db.productos) db.productos=[...PRODS_BASE];
+  const p=db.productos.find(x=>x.id===id);
+  if(p) p.unidad=newUnit;
+  saveDB(db);
+  renderTable(); loadDayData(); renderProdList();
+  showToast('✅ Unidad actualizada','success');
 }
 function addProduct(){
   const nombre=document.getElementById('newProdNombre').value.trim();
