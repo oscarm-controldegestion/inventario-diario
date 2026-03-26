@@ -1023,17 +1023,22 @@ function getRegistrosFiltrados(desde, hasta){
 function buildRangoData(desde, hasta){
   const regs = getRegistrosFiltrados(desde, hasta);
   if(!regs.length) return null;
-  // Get all products across registros
-  const prodSet = new Set();
-  regs.forEach(r => { if(r.items) r.items.forEach(it => prodSet.add(it.nombre)); });
-  const productos = [...prodSet].sort();
+  // Build id->nombre lookup from product catalog
+  const allProds = getProds();
+  const idToNombre = {};
+  allProds.forEach(p => { idToNombre[p.id] = p.nombre; });
   const fechas = [...new Set(regs.map(r => r.fecha))].sort();
-  // Build map: fecha -> { nombre -> cant }
+  // Build map: fecha -> { nombre -> cantidad }
   const map = {};
+  const prodSet = new Set();
   regs.forEach(r => {
     if(!map[r.fecha]) map[r.fecha] = {};
-    if(r.items) r.items.forEach(it => { map[r.fecha][it.nombre] = (it.cantFinal ?? it.cantInicial ?? 0); });
+    if(r.items) r.items.forEach(it => {
+      const nombre = idToNombre[it.id];
+      if(nombre){ prodSet.add(nombre); map[r.fecha][nombre] = (it.cantidad != null ? it.cantidad : ''); }
+    });
   });
+  const productos = [...prodSet].sort();
   return { productos, fechas, map };
 }
 
